@@ -78,12 +78,19 @@ namespace Password_Storage
                 return null;
             }
         }
-        public static string check_key(string key)
+        public static string CheckKey(string key)
         {
             if (key.Length < 32)
                 return "Please enter 128 bit hex for the encryption key";
             return null;
+        }
 
+        public static string HashKey(string key)
+        {
+            byte[] hash_bytes = new byte[128];
+            HashAlgorithm hash = MD5.Create();
+            Console.WriteLine(hash_bytes.ToString());
+            return hash_bytes.ToString();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Password_Storage
                     this.key = enter_password.key;
                     current_file = load_json.FileName;
                     filename_lbl.Text = "Current File: " + current_file;
-                    LoadJson(current_file);
+                    JSONManager.LoadJson(current_file);
                 }
             }
         }
@@ -57,54 +57,40 @@ namespace Password_Storage
         private void add_account_btn_Click(object sender, EventArgs e)
         {
             AddAccount_Form add_form = new AddAccount_Form();
-            add_form.current_id = accounts.Last().id + 1;
-            if (add_form.ShowDialog() == DialogResult.OK)
+            if(accounts.Count > 0)
             {
-                Account account = add_form.account;
-                account.username = CrispyEncrypt.Encrpyt(account.username, key);
-                account.password = CrispyEncrypt.Encrpyt(account.password, key);
-                accounts.Add(account);
-
-                //Save JSON
-                if (JSONManager.SaveJSON(current_file, accounts))
+                add_form.current_id = accounts.Last().id + 1;
+                if (add_form.ShowDialog() == DialogResult.OK)
                 {
-                    LoadJson(current_file);
-                    MessageBox.Show("Account Added");
-                }
+                    Account account = add_form.account;
+                    account.username = CrispyEncrypt.Encrpyt(account.username, key);
+                    account.password = CrispyEncrypt.Encrpyt(account.password, key);
+                    accounts.Add(account);
 
-                //Reload JSON_File
-                
-            }
-        }
+                    //Save JSON
+                    if (JSONManager.SaveJSON(current_file, accounts))
+                    {
+                        //Reload JSON
+                        JSONManager.LoadJson(current_file);
+                        MessageBox.Show("Account Added");
+                    }
 
-        private void new_json_btn_Click(object sender, EventArgs e)
-        {
-            string caption = "Save Location";
-            string message = "Choose where to create your file";
-            MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
-            SaveFileDialog new_json = new SaveFileDialog();
-            if (MessageBox.Show(message, caption, buttons) == DialogResult.OK)
-            {
-                if (new_json.ShowDialog() == DialogResult.OK)
-                {
-                    Console.Write("File Saved");
                 }
             }
         }
+        //private string SerializeAccounts(List<Account> accounts)
+        //{
+        //    return null;
+        //}
 
-        private string SerializeAccounts(List<Account> accounts)
-        {
-            return null;
-        }
 
-
-        private void LoadJson(string path)
-        {
-            accounts_cb.Enabled = true;
-            accounts_cb.DisplayMember = "account_name";
-            accounts_cb.ValueMember = "id";
-            accounts_cb.DataSource = JSONManager.LoadJson(path);
-        }
+        //private void LoadJson(string path)
+        //{
+        //    accounts_cb.Enabled = true;
+        //    accounts_cb.DisplayMember = "account_name";
+        //    accounts_cb.ValueMember = "id";
+        //    accounts_cb.DataSource = JSONManager.LoadJson(path);
+        //}
 
         //private void SaveJSON(string filename)
         //{
@@ -114,17 +100,17 @@ namespace Password_Storage
         //    File.WriteAllText(filename, JsonConvert.SerializeObject(this.accounts, settings));
         //}
 
-        private void CreateFile(List<Account> accounts, string filename)
-        {
-            JsonSerializerSettings settings = new JsonSerializerSettings();
-            settings.DateFormatString = "yyyy-MM-dd";
-            settings.Formatting = Formatting.Indented;
-            using (StreamWriter file = File.CreateText(filename))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, accounts);
-            }
-        }
+        //private void CreateFile(List<Account> accounts, string filename)
+        //{
+        //    JsonSerializerSettings settings = new JsonSerializerSettings();
+        //    settings.DateFormatString = "yyyy-MM-dd";
+        //    settings.Formatting = Formatting.Indented;
+        //    using (StreamWriter file = File.CreateText(filename))
+        //    {
+        //        JsonSerializer serializer = new JsonSerializer();
+        //        serializer.Serialize(file, accounts);
+        //    }
+        //}
 
 
     }

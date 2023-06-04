@@ -20,7 +20,7 @@ namespace Password_Storage
 
         private void ok_btn_Click(object sender, EventArgs e)
         {
-            string check_message = CrispyEncrypt.check_key(password_tb.Text);
+            string check_message = CrispyEncrypt.CheckKey(password_tb.Text);
 
             if (check_message == null)
             {
