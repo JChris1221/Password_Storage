@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Security.Cryptography;
-using Newtonsoft.Json;
-using System.IO;
+//using Newtonsoft.Json;
+//using System.IO;
 
 namespace Password_Storage
 {
     public partial class Main_Form : Form
     {
         private List<Account> accounts;
-        private string key;
+        private byte[] key;
         private string current_file;
         private CrispyEncrypt crispy_encrypt;
         public Main_Form()
@@ -27,12 +27,15 @@ namespace Password_Storage
 
             if (load_json.ShowDialog() == DialogResult.OK)
             {
-                if (enter_password.ShowDialog() == DialogResult.OK)
-                {
-                    this.key = enter_password.key;
-                    current_file = load_json.FileName;
-                    filename_lbl.Text = "Current File: " + current_file;
-                    JSONManager.LoadJson(current_file);
+                try{
+                    if (enter_password.ShowDialog() == DialogResult.OK){
+                        this.key = enter_password.key;
+                        current_file = load_json.FileName;
+                        filename_lbl.Text = "Current File: " + current_file;
+                        JSONManager.LoadJson(current_file);
+                    }
+                }catch (Exception ex){
+                    Console.WriteLine(ex.Message);
                 }
             }
         }

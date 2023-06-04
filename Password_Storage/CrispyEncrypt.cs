@@ -132,6 +132,8 @@ namespace Password_Storage
                 return null;
             }
         }
+
+        //
         public string CheckKey(string key)
         {
             if (key.Length < 32)
@@ -139,9 +141,16 @@ namespace Password_Storage
             return null;
         }
 
+        public string CheckKey(byte[] key)
+        {
+            if(key.Length != 16)
+                return "Please enter 128 bit hex for the encryption key";
+            return null;
+        }
+
 
         //Converts string to 128bit hash in string format
-        public static string HashString_HexString(string key)
+        public string HashString_HexString(string key)
         {
             byte[] hash_bytes = new byte[16];
             HashAlgorithm hash = MD5.Create();
@@ -151,7 +160,7 @@ namespace Password_Storage
         }
 
         //Converts string to 128bit hash
-        public static byte[] HashString(string key)
+        public byte[] HashString(string key)
         {
             byte[] hash_bytes = new byte[16];
             HashAlgorithm hash = MD5.Create();
