@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
+
 namespace Password_Storage
 {
     public class Account
@@ -29,13 +26,5 @@ namespace Password_Storage
             this.password = _password;
             this.date_saved = _date_saved;
         }
-
-        //public bool AddAccount(Account account)
-        //{
-        //    //Encrypt username and password
-
-        //    return true;
-        //}
-        //Create method which returns account array/list 'GetAccounts(JSON FILE)
     }
 }

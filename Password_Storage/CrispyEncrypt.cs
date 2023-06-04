@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
 using System.Diagnostics;
@@ -34,7 +31,6 @@ namespace Password_Storage
             string text = enc_text.Substring(32);
             byte[] message = Convert.FromBase64String(text);
 
-            //Debug.WriteLine("{0}, {1}", iv, text);
             SymmetricAlgorithm aes = Aes.Create();
             aes.KeySize = 128;
             aes.Key = StringToByteArray(key);

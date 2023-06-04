@@ -29,54 +29,53 @@ namespace Password_Storage
         /// </summary>
         private void InitializeComponent()
         {
-            this.password_tb = new System.Windows.Forms.TextBox();
-            this.ok_btn = new System.Windows.Forms.Button();
-            this.cancel_btn = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            password_tb = new System.Windows.Forms.TextBox();
+            ok_btn = new System.Windows.Forms.Button();
+            cancel_btn = new System.Windows.Forms.Button();
+            SuspendLayout();
             // 
             // password_tb
             // 
-            this.password_tb.Location = new System.Drawing.Point(12, 13);
-            this.password_tb.Name = "password_tb";
-            this.password_tb.PlaceholderText = "Enter Encryption Key";
-            this.password_tb.Size = new System.Drawing.Size(316, 23);
-            this.password_tb.TabIndex = 0;
+            password_tb.Location = new System.Drawing.Point(12, 13);
+            password_tb.Name = "password_tb";
+            password_tb.PlaceholderText = "Enter Key";
+            password_tb.Size = new System.Drawing.Size(316, 23);
+            password_tb.TabIndex = 0;
             // 
             // ok_btn
             // 
-            this.ok_btn.Location = new System.Drawing.Point(85, 43);
-            this.ok_btn.Name = "ok_btn";
-            this.ok_btn.Size = new System.Drawing.Size(75, 23);
-            this.ok_btn.TabIndex = 1;
-            this.ok_btn.Text = "Enter";
-            this.ok_btn.UseVisualStyleBackColor = true;
-            this.ok_btn.Click += new System.EventHandler(this.ok_btn_Click);
+            ok_btn.Location = new System.Drawing.Point(85, 43);
+            ok_btn.Name = "ok_btn";
+            ok_btn.Size = new System.Drawing.Size(75, 23);
+            ok_btn.TabIndex = 1;
+            ok_btn.Text = "Enter";
+            ok_btn.UseVisualStyleBackColor = true;
+            ok_btn.Click += ok_btn_Click;
             // 
             // cancel_btn
             // 
-            this.cancel_btn.Location = new System.Drawing.Point(166, 43);
-            this.cancel_btn.Name = "cancel_btn";
-            this.cancel_btn.Size = new System.Drawing.Size(75, 23);
-            this.cancel_btn.TabIndex = 2;
-            this.cancel_btn.Text = "Cancel";
-            this.cancel_btn.UseVisualStyleBackColor = true;
-            this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
+            cancel_btn.Location = new System.Drawing.Point(166, 43);
+            cancel_btn.Name = "cancel_btn";
+            cancel_btn.Size = new System.Drawing.Size(75, 23);
+            cancel_btn.TabIndex = 2;
+            cancel_btn.Text = "Cancel";
+            cancel_btn.UseVisualStyleBackColor = true;
+            cancel_btn.Click += cancel_btn_Click;
             // 
             // EnterPassword_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(340, 78);
-            this.Controls.Add(this.cancel_btn);
-            this.Controls.Add(this.ok_btn);
-            this.Controls.Add(this.password_tb);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "EnterPassword_Form";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "EnterPassword_Form";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(340, 78);
+            Controls.Add(cancel_btn);
+            Controls.Add(ok_btn);
+            Controls.Add(password_tb);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            Name = "EnterPassword_Form";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "Enter Password";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

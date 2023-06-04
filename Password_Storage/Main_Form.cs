@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
 using System.IO;
-using System.Diagnostics;
 
 namespace Password_Storage
 {
@@ -72,11 +66,29 @@ namespace Password_Storage
                 accounts.Add(account);
 
                 //Save JSON
-                SaveToFile(current_file);
+                if (JSONManager.SaveJSON(current_file, accounts))
+                {
+                    LoadJson(current_file);
+                    MessageBox.Show("Account Added");
+                }
 
                 //Reload JSON_File
-                LoadJson(current_file);
-                MessageBox.Show("Account Added");
+                
+            }
+        }
+
+        private void new_json_btn_Click(object sender, EventArgs e)
+        {
+            string caption = "Save Location";
+            string message = "Choose where to create your file";
+            MessageBoxButtons buttons = MessageBoxButtons.OKCancel;
+            SaveFileDialog new_json = new SaveFileDialog();
+            if (MessageBox.Show(message, caption, buttons) == DialogResult.OK)
+            {
+                if (new_json.ShowDialog() == DialogResult.OK)
+                {
+                    Console.Write("File Saved");
+                }
             }
         }
 
@@ -88,24 +100,19 @@ namespace Password_Storage
 
         private void LoadJson(string path)
         {
-            using (StreamReader r = new StreamReader(path))
-            {
-                string json = r.ReadToEnd();
-                accounts = JsonConvert.DeserializeObject<List<Account>>(json);
-            }
             accounts_cb.Enabled = true;
             accounts_cb.DisplayMember = "account_name";
             accounts_cb.ValueMember = "id";
-            accounts_cb.DataSource = accounts;
+            accounts_cb.DataSource = JSONManager.LoadJson(path);
         }
 
-        private void SaveToFile(string filename)
-        {
-            JsonSerializerSettings settings = new JsonSerializerSettings();
-            settings.DateFormatString = "yyyy-MM-dd";
-            settings.Formatting = Formatting.Indented;
-            File.WriteAllText(filename, JsonConvert.SerializeObject(this.accounts, settings));
-        }
+        //private void SaveJSON(string filename)
+        //{
+        //    JsonSerializerSettings settings = new JsonSerializerSettings();
+        //    settings.DateFormatString = "yyyy-MM-dd";
+        //    settings.Formatting = Formatting.Indented;
+        //    File.WriteAllText(filename, JsonConvert.SerializeObject(this.accounts, settings));
+        //}
 
         private void CreateFile(List<Account> accounts, string filename)
         {
@@ -118,6 +125,8 @@ namespace Password_Storage
                 serializer.Serialize(file, accounts);
             }
         }
+
+
     }
 
 }

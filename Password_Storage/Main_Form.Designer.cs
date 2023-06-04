@@ -52,7 +52,7 @@ namespace Password_Storage
             // account_lbl
             // 
             account_lbl.AutoSize = true;
-            account_lbl.Location = new System.Drawing.Point(12, 91);
+            account_lbl.Location = new System.Drawing.Point(12, 89);
             account_lbl.Name = "account_lbl";
             account_lbl.Size = new System.Drawing.Size(90, 15);
             account_lbl.TabIndex = 3;
@@ -63,15 +63,15 @@ namespace Password_Storage
             filename_lbl.AutoSize = true;
             filename_lbl.Location = new System.Drawing.Point(12, 39);
             filename_lbl.Name = "filename_lbl";
-            filename_lbl.Size = new System.Drawing.Size(81, 15);
+            filename_lbl.Size = new System.Drawing.Size(314, 15);
             filename_lbl.TabIndex = 5;
-            filename_lbl.Text = "No file loaded";
+            filename_lbl.Text = "No file loaded (Click add account to create a new json file)";
             // 
             // username_lbl
             // 
             username_lbl.BackColor = System.Drawing.SystemColors.Control;
             username_lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            username_lbl.Location = new System.Drawing.Point(12, 114);
+            username_lbl.Location = new System.Drawing.Point(12, 112);
             username_lbl.Name = "username_lbl";
             username_lbl.Padding = new System.Windows.Forms.Padding(1);
             username_lbl.Size = new System.Drawing.Size(328, 21);
@@ -82,7 +82,7 @@ namespace Password_Storage
             // 
             password_lbl.BackColor = System.Drawing.SystemColors.Control;
             password_lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            password_lbl.Location = new System.Drawing.Point(12, 140);
+            password_lbl.Location = new System.Drawing.Point(12, 138);
             password_lbl.Name = "password_lbl";
             password_lbl.Padding = new System.Windows.Forms.Padding(1);
             password_lbl.Size = new System.Drawing.Size(328, 21);
@@ -93,7 +93,7 @@ namespace Password_Storage
             // 
             accounts_cb.Enabled = false;
             accounts_cb.FormattingEnabled = true;
-            accounts_cb.Location = new System.Drawing.Point(108, 88);
+            accounts_cb.Location = new System.Drawing.Point(108, 86);
             accounts_cb.Name = "accounts_cb";
             accounts_cb.Size = new System.Drawing.Size(232, 23);
             accounts_cb.TabIndex = 8;
@@ -101,7 +101,7 @@ namespace Password_Storage
             // 
             // add_account_btn
             // 
-            add_account_btn.Location = new System.Drawing.Point(12, 222);
+            add_account_btn.Location = new System.Drawing.Point(12, 218);
             add_account_btn.Name = "add_account_btn";
             add_account_btn.Size = new System.Drawing.Size(328, 23);
             add_account_btn.TabIndex = 9;
@@ -113,7 +113,7 @@ namespace Password_Storage
             // 
             date_saved_tb.BackColor = System.Drawing.SystemColors.Control;
             date_saved_tb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            date_saved_tb.Location = new System.Drawing.Point(12, 168);
+            date_saved_tb.Location = new System.Drawing.Point(12, 166);
             date_saved_tb.Name = "date_saved_tb";
             date_saved_tb.Padding = new System.Windows.Forms.Padding(1);
             date_saved_tb.Size = new System.Drawing.Size(328, 21);
@@ -124,7 +124,7 @@ namespace Password_Storage
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(358, 257);
+            ClientSize = new System.Drawing.Size(358, 251);
             Controls.Add(date_saved_tb);
             Controls.Add(add_account_btn);
             Controls.Add(accounts_cb);

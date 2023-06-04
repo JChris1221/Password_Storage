@@ -21,11 +21,13 @@ namespace Password_Storage
         private void ok_btn_Click(object sender, EventArgs e)
         {
             string check_message = CrispyEncrypt.check_key(password_tb.Text);
+
             if (check_message == null)
             {
                 this.key = password_tb.Text;
                 this.DialogResult = DialogResult.OK;
-            }else
+            }
+            else
             {
                 MessageBox.Show(check_message, "Invalid Encryption Key", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
