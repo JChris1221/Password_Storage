@@ -13,14 +13,17 @@ namespace Password_Storage
         private List<Account> accounts;
         private string key;
         private string current_file;
+        private CrispyEncrypt crispy_encrypt;
         public Main_Form()
         {
             InitializeComponent();
+            crispy_encrypt = new CrispyEncrypt();
         }
         private void load_btn_Click(object sender, EventArgs e)
         {
             OpenFileDialog load_json = new OpenFileDialog();
             EnterPassword_Form enter_password = new EnterPassword_Form();
+            enter_password.crispy_encrypt = this.crispy_encrypt;
 
             if (load_json.ShowDialog() == DialogResult.OK)
             {
@@ -39,8 +42,8 @@ namespace Password_Storage
             Account selected = accounts.Single(a => a.id == (int)accounts_cb.SelectedValue);
             try
             {
-                username_lbl.Text = CrispyEncrypt.Decrypt(selected.username, key);
-                password_lbl.Text = CrispyEncrypt.Decrypt(selected.password, key);
+                username_lbl.Text = crispy_encrypt.Decrypt(selected.username, key);
+                password_lbl.Text = crispy_encrypt.Decrypt(selected.password, key);
                 date_saved_tb.Text = selected.date_saved.ToString("dddd, dd MMMM yyyy");
             }
             catch (CryptographicException ce)
@@ -63,8 +66,9 @@ namespace Password_Storage
                 if (add_form.ShowDialog() == DialogResult.OK)
                 {
                     Account account = add_form.account;
-                    account.username = CrispyEncrypt.Encrpyt(account.username, key);
-                    account.password = CrispyEncrypt.Encrpyt(account.password, key);
+                    CrispyEncrypt ce = new CrispyEncrypt();
+                    account.username = ce.Encrpyt(account.username, key);
+                    account.password = ce.Encrpyt(account.password, key);
                     accounts.Add(account);
 
                     //Save JSON

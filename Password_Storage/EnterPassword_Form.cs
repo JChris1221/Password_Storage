@@ -13,6 +13,7 @@ namespace Password_Storage
     public partial class EnterPassword_Form : Form
     {
         public string key;
+        public CrispyEncrypt crispy_encrypt;
         public EnterPassword_Form()
         {
             InitializeComponent();
@@ -20,7 +21,7 @@ namespace Password_Storage
 
         private void ok_btn_Click(object sender, EventArgs e)
         {
-            string check_message = CrispyEncrypt.CheckKey(password_tb.Text);
+            string check_message = crispy_encrypt.CheckKey(password_tb.Text);
 
             if (check_message == null)
             {

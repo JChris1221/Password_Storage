@@ -6,9 +6,10 @@ using System.Diagnostics;
 
 namespace Password_Storage
 {
-    public static class CrispyEncrypt
+    public class CrispyEncrypt
     {
-        static byte[] StringToByteArray(String hex)
+        //takes 128 bit hex string and converts it to byte[16]
+        private byte[] StringToByteArray(String hex)
         {
             int NumberChars = hex.Length;
             byte[] bytes = new byte[NumberChars / 2];
@@ -17,7 +18,7 @@ namespace Password_Storage
             return bytes;
         }
 
-        static string ByteArrayToHexString(byte[] ba)
+        private string ByteArrayToHexString(byte[] ba)
         {
             StringBuilder hex = new StringBuilder(ba.Length * 2);
             foreach (byte b in ba)
@@ -25,7 +26,7 @@ namespace Password_Storage
             return hex.ToString();
         }
 
-        public static string Decrypt(string enc_text, string key)
+        public string Decrypt(string enc_text, string key)
         {
             string iv = enc_text.Substring(0, 32);
             string text = enc_text.Substring(32);
@@ -44,10 +45,11 @@ namespace Password_Storage
                     return Encoding.ASCII.GetString(decryptedBytes);
                 }
             }
+            
         }
 
 
-        public static string Encrpyt(string message, string key)
+        public string Encrpyt(string message, string key)
         {
             byte[] byte_key = StringToByteArray(key);
             byte[] byte_message = Encoding.ASCII.GetBytes(message);
@@ -78,19 +80,30 @@ namespace Password_Storage
                 return null;
             }
         }
-        public static string CheckKey(string key)
+        public string CheckKey(string key)
         {
             if (key.Length < 32)
                 return "Please enter 128 bit hex for the encryption key";
             return null;
         }
 
-        public static string HashKey(string key)
+
+        //public static string HashString(string key)
+        //{
+        //    byte[] hash_bytes = new byte[16];
+        //    HashAlgorithm hash = MD5.Create();
+        //    hash_bytes = hash.ComputeHash(ASCIIEncoding.);
+        //    Console.WriteLine(ByteArrayToHexString(hash_bytes));
+        //    return hash_bytes.ToString();
+        //}
+
+        //Converts string to 128bit hash
+        public static byte[] HashString(string key)
         {
-            byte[] hash_bytes = new byte[128];
+            byte[] hash_bytes = new byte[16];
             HashAlgorithm hash = MD5.Create();
-            Console.WriteLine(hash_bytes.ToString());
-            return hash_bytes.ToString();
+            hash_bytes = hash.ComputeHash(ASCIIEncoding.ASCII.GetBytes(key));
+            return hash_bytes;
         }
     }
 }
