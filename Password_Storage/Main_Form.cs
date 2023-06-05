@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Text;
 
 namespace Password_Storage
 {
@@ -30,9 +31,21 @@ namespace Password_Storage
                 if (enter_password.ShowDialog() == DialogResult.OK)
                 {
                     this.key = enter_password.key;
+                    Debug.Write(Encoding.ASCII.GetString(this.key));
                     current_file = load_json.FileName;
-                    filename_lbl.Text = "Current File: " + current_file;
-                    CRSPManager.LoadCRSP(current_file, key);
+                    accounts = CRSPManager.LoadCRSP(current_file, this.key);
+
+                    if (accounts == null)
+                    {
+                        MessageBox.Show("Invalid key", "Decryption Failed", MessageBoxButtons.OK);
+                    }
+                    else{
+                        filename_lbl.Text = "Current File: " + current_file;
+                        save_btn.Enabled = true;
+                        accounts_bl = new BindingList<Account>(accounts);
+                        accounts_cb.DataSource = accounts_bl;
+                        accounts_cb.Enabled = true;
+                    }
                 }
             }
         }
@@ -43,8 +56,6 @@ namespace Password_Storage
             username_lbl.Text = selected.username;
             password_lbl.Text = selected.password;
             date_saved_tb.Text = selected.date_saved.ToString("dddd, dd MMMM yyyy");
-            
-
         }
 
         private void add_account_btn_Click(object sender, EventArgs e)
@@ -67,10 +78,12 @@ namespace Password_Storage
                 accounts_bl = new BindingList<Account>(accounts);
                 accounts_cb.DataSource = accounts_bl;
 
-                
+
                 if (!accounts_cb.Enabled)
                     accounts_cb.Enabled = true;
-                
+                if (!save_btn.Enabled)
+                    save_btn.Enabled = true;
+
             }
 
         }
@@ -88,11 +101,12 @@ namespace Password_Storage
             {
                 if (save_form.ShowDialog() == DialogResult.OK)
                 {
-                    Debug.WriteLine(save_form.FileName);
                     EnterPassword_Form enter_pass = new EnterPassword_Form();
+                    enter_pass.crispy_encrypt = this.crispy_encrypt;
                     if (enter_pass.ShowDialog() == DialogResult.OK)
                     {
                         this.key = enter_pass.key;
+                        Debug.Write(Encoding.ASCII.GetString(this.key));
                         this.current_file = save_form.FileName;
                     }
                 }

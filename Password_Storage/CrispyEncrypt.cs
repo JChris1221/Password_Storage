@@ -54,19 +54,27 @@ namespace Password_Storage
             //iv is the first 16 bytes of the enc message array
             byte[] iv = enc_message.Take(16).ToArray();
             byte[] message = enc_message.Skip(16).ToArray();
+            Debug.Write(Encoding.ASCII.GetString(iv));
 
             SymmetricAlgorithm aes = Aes.Create();
             aes.KeySize = 128;
             aes.Key = key;
             aes.IV = iv;
-            using (MemoryStream ms = new MemoryStream(message))
+            try
             {
-                using (CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read))
+                using (MemoryStream ms = new MemoryStream(message))
                 {
-                    byte[] decryptedBytes = new byte[message.Length];
-                    cs.Read(decryptedBytes, 0, decryptedBytes.Length);
-                    return decryptedBytes;
+                    using (CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read))
+                    {
+                        byte[] decryptedBytes = new byte[message.Length];
+                        cs.Read(decryptedBytes, 0, decryptedBytes.Length);
+                        return decryptedBytes;
+                    }
                 }
+            }catch (CryptographicException ce)
+            {
+                Debug.WriteLine(ce.Message);
+                return null;
             }
 
         }
@@ -112,6 +120,7 @@ namespace Password_Storage
             aes.BlockSize = 128;
             aes.Key = key;
             aes.IV = hash.ComputeHash(Encoding.ASCII.GetBytes(DateTime.Now.ToString()));
+            Debug.Write(Encoding.ASCII.GetString(aes.IV));
 
             try
             {
@@ -124,8 +133,8 @@ namespace Password_Storage
 
                     //string encrypted = Convert.ToBase64String(ms.ToArray());
                     //string iv_string = ByteArrayToHexString(aes.IV);
-
-                    return aes.IV.Concat(ms.ToArray()).ToArray();
+                    byte[] enc_message = aes.IV.Concat(ms.ToArray()).ToArray();
+                    return enc_message;
                     //return iv_string + encrypted;
                 }
             }

@@ -37,7 +37,7 @@ namespace Password_Storage
             accounts_cb = new System.Windows.Forms.ComboBox();
             add_account_btn = new System.Windows.Forms.Button();
             date_saved_tb = new System.Windows.Forms.Label();
-            button1 = new System.Windows.Forms.Button();
+            save_btn = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
             // load_btn
@@ -123,23 +123,23 @@ namespace Password_Storage
             date_saved_tb.TabIndex = 11;
             date_saved_tb.Text = "Date Saved";
             // 
-            // button1
+            // save_btn
             // 
-            button1.Enabled = false;
-            button1.Location = new System.Drawing.Point(12, 247);
-            button1.Name = "button1";
-            button1.Size = new System.Drawing.Size(328, 23);
-            button1.TabIndex = 12;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += save_file_btn_Click;
+            save_btn.Enabled = false;
+            save_btn.Location = new System.Drawing.Point(12, 247);
+            save_btn.Name = "save_btn";
+            save_btn.Size = new System.Drawing.Size(328, 23);
+            save_btn.TabIndex = 12;
+            save_btn.Text = "Save";
+            save_btn.UseVisualStyleBackColor = true;
+            save_btn.Click += save_file_btn_Click;
             // 
             // Main_Form
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(358, 280);
-            Controls.Add(button1);
+            Controls.Add(save_btn);
             Controls.Add(date_saved_tb);
             Controls.Add(add_account_btn);
             Controls.Add(accounts_cb);
@@ -166,7 +166,7 @@ namespace Password_Storage
         private System.Windows.Forms.ComboBox accounts_cb;
         private System.Windows.Forms.Button add_account_btn;
         private System.Windows.Forms.Label date_saved_tb;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button save_btn;
     }
 }
 
