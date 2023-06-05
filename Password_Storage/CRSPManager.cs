@@ -40,9 +40,9 @@ namespace Password_Storage
 
             CrispyEncrypt ce = new CrispyEncrypt();
             byte[] json_bytes = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(accounts, settings));
-            string encrypted_json = ce.Encrypt(json_bytes, key);
+            byte[] encrypted_json = ce.Encrypt(json_bytes, key);
 
-            File.WriteAllText(filename, encrypted_json);
+            File.WriteAllText(filename, Encoding.ASCII.GetString(encrypted_json));
             return true;
         }
     }
