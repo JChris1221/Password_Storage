@@ -48,30 +48,30 @@ namespace Password_Storage
             
         }
 
-        public string Decrypt(string enc_text, byte[] key)
+        public byte[] Decrypt(byte[] enc_message, byte[] key)
         {
-            string iv = enc_text.Substring(0, 32);
-            string text = enc_text.Substring(32);
-            byte[] message = Convert.FromBase64String(text);
+            //iv is the first 16 bytes of the enc message array
+            byte[] iv = enc_message;
+            byte[] message = enc_message;
 
             SymmetricAlgorithm aes = Aes.Create();
             aes.KeySize = 128;
             aes.Key = key;
-            aes.IV = HexStringToByteArray(iv);
+            aes.IV = iv;
             using (MemoryStream ms = new MemoryStream(message))
             {
                 using (CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read))
                 {
                     byte[] decryptedBytes = new byte[message.Length];
                     cs.Read(decryptedBytes, 0, decryptedBytes.Length);
-                    return Encoding.ASCII.GetString(decryptedBytes);
+                    return decryptedBytes;
                 }
             }
 
         }
 
 
-        public string Encrpyt(string message, string key)
+        public string Encrypt(string message, string key)
         {
             byte[] byte_key = HexStringToByteArray(key);
             byte[] byte_message = Encoding.ASCII.GetBytes(message);
@@ -102,9 +102,9 @@ namespace Password_Storage
                 return null;
             }
         }
-        public string Encrpyt(string message, byte[] key)
+        public string Encrypt(byte[] message, byte[] key)
         {
-            byte[] byte_message = Encoding.ASCII.GetBytes(message);
+            
             SymmetricAlgorithm aes = Aes.Create();
             HashAlgorithm hash = MD5.Create();
             aes.BlockSize = 128;
@@ -117,7 +117,7 @@ namespace Password_Storage
                 {
                     using (CryptoStream cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
                     {
-                        cs.Write(byte_message, 0, byte_message.Length);
+                        cs.Write(message, 0, message.Length);
                     }
 
                     string encrypted = Convert.ToBase64String(ms.ToArray());
