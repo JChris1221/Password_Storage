@@ -37,6 +37,7 @@ namespace Password_Storage
             accounts_cb = new System.Windows.Forms.ComboBox();
             add_account_btn = new System.Windows.Forms.Button();
             date_saved_tb = new System.Windows.Forms.Label();
+            button1 = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
             // load_btn
@@ -45,7 +46,7 @@ namespace Password_Storage
             load_btn.Name = "load_btn";
             load_btn.Size = new System.Drawing.Size(328, 23);
             load_btn.TabIndex = 2;
-            load_btn.Text = "Load JSON";
+            load_btn.Text = "Load CRSP";
             load_btn.UseVisualStyleBackColor = true;
             load_btn.Click += load_btn_Click;
             // 
@@ -63,9 +64,9 @@ namespace Password_Storage
             filename_lbl.AutoSize = true;
             filename_lbl.Location = new System.Drawing.Point(12, 39);
             filename_lbl.Name = "filename_lbl";
-            filename_lbl.Size = new System.Drawing.Size(314, 15);
+            filename_lbl.Size = new System.Drawing.Size(81, 15);
             filename_lbl.TabIndex = 5;
-            filename_lbl.Text = "No file loaded (Click add account to create a new json file)";
+            filename_lbl.Text = "No file loaded";
             // 
             // username_lbl
             // 
@@ -120,11 +121,21 @@ namespace Password_Storage
             date_saved_tb.TabIndex = 11;
             date_saved_tb.Text = "Date Saved";
             // 
+            // button1
+            // 
+            button1.Location = new System.Drawing.Point(12, 247);
+            button1.Name = "button1";
+            button1.Size = new System.Drawing.Size(328, 23);
+            button1.TabIndex = 12;
+            button1.Text = "Save";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // Main_Form
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(358, 251);
+            ClientSize = new System.Drawing.Size(358, 280);
+            Controls.Add(button1);
             Controls.Add(date_saved_tb);
             Controls.Add(add_account_btn);
             Controls.Add(accounts_cb);
@@ -151,6 +162,7 @@ namespace Password_Storage
         private System.Windows.Forms.ComboBox accounts_cb;
         private System.Windows.Forms.Button add_account_btn;
         private System.Windows.Forms.Label date_saved_tb;
+        private System.Windows.Forms.Button button1;
     }
 }
 

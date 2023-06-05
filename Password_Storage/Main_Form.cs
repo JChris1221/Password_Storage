@@ -27,7 +27,8 @@ namespace Password_Storage
 
             if (load_json.ShowDialog() == DialogResult.OK)
             {
-                if (enter_password.ShowDialog() == DialogResult.OK){
+                if (enter_password.ShowDialog() == DialogResult.OK)
+                {
                     this.key = enter_password.key;
                     current_file = load_json.FileName;
                     filename_lbl.Text = "Current File: " + current_file;
@@ -59,7 +60,7 @@ namespace Password_Storage
         private void add_account_btn_Click(object sender, EventArgs e)
         {
             AddAccount_Form add_form = new AddAccount_Form();
-            if(accounts.Count > 0)
+            if (accounts.Count > 0)
             {
                 add_form.current_id = accounts.Last().id + 1;
                 if (add_form.ShowDialog() == DialogResult.OK)
@@ -85,7 +86,7 @@ namespace Password_Storage
         {
             CRSPManager.SaveCRSP(current_file, accounts, this.key);
         }
-        
+
     }
 
 }
