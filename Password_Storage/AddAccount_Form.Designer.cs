@@ -29,76 +29,75 @@ namespace Password_Storage
         /// </summary>
         private void InitializeComponent()
         {
-            this.add_btn = new System.Windows.Forms.Button();
-            this.username_tb = new System.Windows.Forms.TextBox();
-            this.password_tb = new System.Windows.Forms.TextBox();
-            this.acc_name_tb = new System.Windows.Forms.TextBox();
-            this.cancel_btn = new System.Windows.Forms.Button();
-            this.SuspendLayout();
+            add_btn = new System.Windows.Forms.Button();
+            username_tb = new System.Windows.Forms.TextBox();
+            password_tb = new System.Windows.Forms.TextBox();
+            acc_name_tb = new System.Windows.Forms.TextBox();
+            cancel_btn = new System.Windows.Forms.Button();
+            SuspendLayout();
             // 
             // add_btn
             // 
-            this.add_btn.Location = new System.Drawing.Point(12, 99);
-            this.add_btn.Name = "add_btn";
-            this.add_btn.Size = new System.Drawing.Size(112, 23);
-            this.add_btn.TabIndex = 0;
-            this.add_btn.Text = "Add";
-            this.add_btn.UseVisualStyleBackColor = true;
-            this.add_btn.Click += new System.EventHandler(this.add_account_btn_Click);
+            add_btn.Location = new System.Drawing.Point(12, 99);
+            add_btn.Name = "add_btn";
+            add_btn.Size = new System.Drawing.Size(112, 23);
+            add_btn.TabIndex = 0;
+            add_btn.Text = "Add";
+            add_btn.UseVisualStyleBackColor = true;
+            add_btn.Click += add_account_btn_Click;
             // 
             // username_tb
             // 
-            this.username_tb.Location = new System.Drawing.Point(12, 41);
-            this.username_tb.Name = "username_tb";
-            this.username_tb.PlaceholderText = "Username";
-            this.username_tb.Size = new System.Drawing.Size(240, 23);
-            this.username_tb.TabIndex = 1;
+            username_tb.Location = new System.Drawing.Point(12, 41);
+            username_tb.Name = "username_tb";
+            username_tb.PlaceholderText = "Username";
+            username_tb.Size = new System.Drawing.Size(240, 23);
+            username_tb.TabIndex = 1;
             // 
             // password_tb
             // 
-            this.password_tb.Location = new System.Drawing.Point(12, 70);
-            this.password_tb.Name = "password_tb";
-            this.password_tb.PasswordChar = '*';
-            this.password_tb.PlaceholderText = "Password";
-            this.password_tb.Size = new System.Drawing.Size(240, 23);
-            this.password_tb.TabIndex = 2;
+            password_tb.Location = new System.Drawing.Point(12, 70);
+            password_tb.Name = "password_tb";
+            password_tb.PasswordChar = '*';
+            password_tb.PlaceholderText = "Password";
+            password_tb.Size = new System.Drawing.Size(240, 23);
+            password_tb.TabIndex = 2;
             // 
             // acc_name_tb
             // 
-            this.acc_name_tb.Location = new System.Drawing.Point(12, 12);
-            this.acc_name_tb.Name = "acc_name_tb";
-            this.acc_name_tb.PlaceholderText = "Account Name";
-            this.acc_name_tb.Size = new System.Drawing.Size(240, 23);
-            this.acc_name_tb.TabIndex = 3;
+            acc_name_tb.Location = new System.Drawing.Point(12, 12);
+            acc_name_tb.Name = "acc_name_tb";
+            acc_name_tb.PlaceholderText = "Account Name";
+            acc_name_tb.Size = new System.Drawing.Size(240, 23);
+            acc_name_tb.TabIndex = 3;
             // 
             // cancel_btn
             // 
-            this.cancel_btn.Location = new System.Drawing.Point(130, 99);
-            this.cancel_btn.Name = "cancel_btn";
-            this.cancel_btn.Size = new System.Drawing.Size(122, 23);
-            this.cancel_btn.TabIndex = 4;
-            this.cancel_btn.Text = "Cancel";
-            this.cancel_btn.UseVisualStyleBackColor = true;
-            this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
+            cancel_btn.Location = new System.Drawing.Point(130, 99);
+            cancel_btn.Name = "cancel_btn";
+            cancel_btn.Size = new System.Drawing.Size(122, 23);
+            cancel_btn.TabIndex = 4;
+            cancel_btn.Text = "Cancel";
+            cancel_btn.UseVisualStyleBackColor = true;
+            cancel_btn.Click += cancel_btn_Click;
             // 
             // AddAccount_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(264, 134);
-            this.Controls.Add(this.cancel_btn);
-            this.Controls.Add(this.acc_name_tb);
-            this.Controls.Add(this.password_tb);
-            this.Controls.Add(this.username_tb);
-            this.Controls.Add(this.add_btn);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.Name = "AddAccount_Form";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add Account";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(264, 134);
+            Controls.Add(cancel_btn);
+            Controls.Add(acc_name_tb);
+            Controls.Add(password_tb);
+            Controls.Add(username_tb);
+            Controls.Add(add_btn);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            Name = "AddAccount_Form";
+            StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            Text = "Add Account";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

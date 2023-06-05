@@ -92,12 +92,14 @@ namespace Password_Storage
             // 
             // accounts_cb
             // 
+            accounts_cb.DisplayMember = "account_name";
             accounts_cb.Enabled = false;
             accounts_cb.FormattingEnabled = true;
             accounts_cb.Location = new System.Drawing.Point(108, 86);
             accounts_cb.Name = "accounts_cb";
             accounts_cb.Size = new System.Drawing.Size(232, 23);
             accounts_cb.TabIndex = 8;
+            accounts_cb.ValueMember = "id";
             accounts_cb.SelectedIndexChanged += accounts_cb_SelectedIndexChanged;
             // 
             // add_account_btn
@@ -123,6 +125,7 @@ namespace Password_Storage
             // 
             // button1
             // 
+            button1.Enabled = false;
             button1.Location = new System.Drawing.Point(12, 247);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(328, 23);

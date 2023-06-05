@@ -136,7 +136,7 @@ namespace Password_Storage
             }
         }
 
-        //
+        //Check if key is in a valid format
         public string CheckKey(string key)
         {
             if (key.Length < 32)

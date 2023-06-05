@@ -21,7 +21,7 @@ namespace Password_Storage
 
         private void add_account_btn_Click(object sender, EventArgs e)
         {
-            account = new Account(current_id, acc_name_tb.Text,username_tb.Text, password_tb.Text, DateTime.Now);
+            account = new Account(current_id, acc_name_tb.Text, username_tb.Text, password_tb.Text, DateTime.Now);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
