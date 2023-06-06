@@ -33,7 +33,7 @@ namespace Password_Storage
                     this.key = enter_password.key;
                     Debug.Write(Encoding.ASCII.GetString(this.key));
                     current_file = open_crsp_dialog.FileName;
-                    OpenCRSP();       
+                    OpenCRSP();
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace Password_Storage
         private void save_as_btn_Click(Object sender, EventArgs e)
         {
 
-            
+
             if (save_crsp_dialog.ShowDialog() == DialogResult.OK)
             {
                 enter_password_form enter_pass = new enter_password_form();
@@ -117,7 +117,7 @@ namespace Password_Storage
             }
             else
             {
-                filename_lbl.Text = "Current File: " + current_file;
+                filename_lbl.Text = "Current File:\n" + current_file;
                 save_btn.Enabled = true;
                 save_as_btn.Enabled = true;
 
