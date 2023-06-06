@@ -13,7 +13,6 @@ namespace Password_Storage
             CrispyEncrypt ce = new CrispyEncrypt();
 
             byte[] crsp_bytes = File.ReadAllBytes(filename);
-            Console.Write(crsp_bytes);
             try
             {
                 string crsp = Encoding.ASCII.GetString(ce.Decrypt(crsp_bytes, key));
