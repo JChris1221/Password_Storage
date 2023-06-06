@@ -133,7 +133,7 @@ namespace Password_Storage
             save_btn.TabIndex = 6;
             save_btn.Text = "Save";
             save_btn.UseVisualStyleBackColor = true;
-            save_btn.Click += save_file_btn_Click;
+            save_btn.Click += save_btn_Click;
             // 
             // Main_Form
             // 

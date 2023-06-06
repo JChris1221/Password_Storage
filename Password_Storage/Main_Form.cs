@@ -85,17 +85,16 @@ namespace Password_Storage
                     accounts_cb.Enabled = true;
                 if (!save_btn.Enabled)
                     save_btn.Enabled = true;
-
             }
 
         }
 
-        private void save_file_btn_Click(Object sender, EventArgs e)
+        private void save_btn_Click(Object sender, EventArgs e)
         {
             SaveFileDialog save_form = new SaveFileDialog();
             save_form.Title = "Save CSRP";
-            save_form.Filter = "crispy encrypt files (*.csrp)|*.csrp";
-            save_form.DefaultExt = "csrp";
+            save_form.Filter = "crispy encrypt files (*.crsp)|*.crsp";
+            save_form.DefaultExt = "crsp";
             save_form.CheckPathExists = true;
             //save_form.CheckFileExists = true;
 
