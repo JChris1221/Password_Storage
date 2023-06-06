@@ -44,13 +44,17 @@ namespace Password_Storage
             save_btn = new System.Windows.Forms.ToolStripMenuItem();
             save_as_btn = new System.Windows.Forms.ToolStripMenuItem();
             closeFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            edit_btn = new System.Windows.Forms.Button();
+            panel1 = new System.Windows.Forms.Panel();
+            remove_btn = new System.Windows.Forms.Button();
             menu_strip.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // account_lbl
             // 
             account_lbl.AutoSize = true;
-            account_lbl.Location = new System.Drawing.Point(18, 47);
+            account_lbl.Location = new System.Drawing.Point(13, 16);
             account_lbl.Name = "account_lbl";
             account_lbl.Size = new System.Drawing.Size(90, 15);
             account_lbl.TabIndex = 3;
@@ -59,10 +63,10 @@ namespace Password_Storage
             // filename_lbl
             // 
             filename_lbl.BackColor = System.Drawing.SystemColors.ButtonFace;
-            filename_lbl.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            filename_lbl.Location = new System.Drawing.Point(18, 202);
+            filename_lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            filename_lbl.Location = new System.Drawing.Point(18, 203);
             filename_lbl.Name = "filename_lbl";
-            filename_lbl.Size = new System.Drawing.Size(328, 45);
+            filename_lbl.Size = new System.Drawing.Size(328, 34);
             filename_lbl.TabIndex = 7;
             filename_lbl.Text = "No file...";
             // 
@@ -70,10 +74,10 @@ namespace Password_Storage
             // 
             username_lbl.BackColor = System.Drawing.SystemColors.Control;
             username_lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            username_lbl.Location = new System.Drawing.Point(18, 73);
+            username_lbl.Location = new System.Drawing.Point(13, 42);
             username_lbl.Name = "username_lbl";
             username_lbl.Padding = new System.Windows.Forms.Padding(1);
-            username_lbl.Size = new System.Drawing.Size(328, 21);
+            username_lbl.Size = new System.Drawing.Size(301, 21);
             username_lbl.TabIndex = 2;
             username_lbl.Text = "Username";
             // 
@@ -81,10 +85,10 @@ namespace Password_Storage
             // 
             password_lbl.BackColor = System.Drawing.SystemColors.Control;
             password_lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            password_lbl.Location = new System.Drawing.Point(18, 103);
+            password_lbl.Location = new System.Drawing.Point(13, 72);
             password_lbl.Name = "password_lbl";
             password_lbl.Padding = new System.Windows.Forms.Padding(1);
-            password_lbl.Size = new System.Drawing.Size(328, 21);
+            password_lbl.Size = new System.Drawing.Size(301, 21);
             password_lbl.TabIndex = 3;
             password_lbl.Text = "Password";
             // 
@@ -95,20 +99,20 @@ namespace Password_Storage
             accounts_cb.DisplayMember = "account_name";
             accounts_cb.Enabled = false;
             accounts_cb.FormattingEnabled = true;
-            accounts_cb.Location = new System.Drawing.Point(114, 44);
+            accounts_cb.Location = new System.Drawing.Point(109, 13);
             accounts_cb.Name = "accounts_cb";
-            accounts_cb.Size = new System.Drawing.Size(232, 23);
+            accounts_cb.Size = new System.Drawing.Size(205, 23);
             accounts_cb.TabIndex = 1;
             accounts_cb.ValueMember = "id";
             accounts_cb.SelectedIndexChanged += accounts_cb_SelectedIndexChanged;
             // 
             // add_account_btn
             // 
-            add_account_btn.Location = new System.Drawing.Point(113, 165);
+            add_account_btn.Location = new System.Drawing.Point(13, 135);
             add_account_btn.Name = "add_account_btn";
-            add_account_btn.Size = new System.Drawing.Size(128, 24);
+            add_account_btn.Size = new System.Drawing.Size(90, 24);
             add_account_btn.TabIndex = 5;
-            add_account_btn.Text = "Add Account";
+            add_account_btn.Text = "Add";
             add_account_btn.UseVisualStyleBackColor = true;
             add_account_btn.Click += add_account_btn_Click;
             // 
@@ -116,10 +120,10 @@ namespace Password_Storage
             // 
             date_saved_tb.BackColor = System.Drawing.SystemColors.Control;
             date_saved_tb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            date_saved_tb.Location = new System.Drawing.Point(18, 133);
+            date_saved_tb.Location = new System.Drawing.Point(13, 102);
             date_saved_tb.Name = "date_saved_tb";
             date_saved_tb.Padding = new System.Windows.Forms.Padding(1);
-            date_saved_tb.Size = new System.Drawing.Size(328, 21);
+            date_saved_tb.Size = new System.Drawing.Size(301, 21);
             date_saved_tb.TabIndex = 4;
             date_saved_tb.Text = "Date Saved";
             // 
@@ -179,18 +183,47 @@ namespace Password_Storage
             closeFileToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             closeFileToolStripMenuItem.Text = "Close File";
             // 
+            // edit_btn
+            // 
+            edit_btn.Location = new System.Drawing.Point(117, 135);
+            edit_btn.Name = "edit_btn";
+            edit_btn.Size = new System.Drawing.Size(90, 24);
+            edit_btn.TabIndex = 10;
+            edit_btn.Text = "Edit";
+            edit_btn.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(remove_btn);
+            panel1.Controls.Add(accounts_cb);
+            panel1.Controls.Add(edit_btn);
+            panel1.Controls.Add(account_lbl);
+            panel1.Controls.Add(date_saved_tb);
+            panel1.Controls.Add(username_lbl);
+            panel1.Controls.Add(add_account_btn);
+            panel1.Controls.Add(password_lbl);
+            panel1.Location = new System.Drawing.Point(18, 27);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(328, 169);
+            panel1.TabIndex = 11;
+            // 
+            // remove_btn
+            // 
+            remove_btn.BackColor = System.Drawing.Color.IndianRed;
+            remove_btn.Location = new System.Drawing.Point(224, 135);
+            remove_btn.Name = "remove_btn";
+            remove_btn.Size = new System.Drawing.Size(90, 24);
+            remove_btn.TabIndex = 11;
+            remove_btn.Text = "Remove";
+            remove_btn.UseVisualStyleBackColor = false;
+            // 
             // Main_Form
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(358, 256);
-            Controls.Add(date_saved_tb);
-            Controls.Add(add_account_btn);
-            Controls.Add(accounts_cb);
-            Controls.Add(password_lbl);
-            Controls.Add(username_lbl);
+            ClientSize = new System.Drawing.Size(358, 249);
+            Controls.Add(panel1);
             Controls.Add(filename_lbl);
-            Controls.Add(account_lbl);
             Controls.Add(menu_strip);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             MainMenuStrip = menu_strip;
@@ -200,6 +233,8 @@ namespace Password_Storage
             Text = "Password Storage";
             menu_strip.ResumeLayout(false);
             menu_strip.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -220,6 +255,9 @@ namespace Password_Storage
         private System.Windows.Forms.ToolStripMenuItem save_btn;
         private System.Windows.Forms.ToolStripMenuItem save_as_btn;
         private System.Windows.Forms.ToolStripMenuItem closeFileToolStripMenuItem;
+        private System.Windows.Forms.Button edit_btn;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button remove_btn;
     }
 }
 
