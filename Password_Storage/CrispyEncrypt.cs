@@ -12,9 +12,9 @@ namespace Password_Storage
         //takes 128 bit hex string and converts it to byte[16]
         private static byte[] HexStringToByteArray(String hex)
         {
-            int NumberChars = hex.Length;
-            byte[] bytes = new byte[NumberChars / 2];
-            for (int i = 0; i < NumberChars; i += 2)
+            int number_chars = hex.Length;
+            byte[] bytes = new byte[number_chars / 2];
+            for (int i = 0; i < number_chars; i += 2)
                 bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
             return bytes;
         }
@@ -54,7 +54,6 @@ namespace Password_Storage
             //iv is the first 16 bytes of the enc message array
             byte[] iv = enc_message.Take(16).ToArray();
             byte[] message = enc_message.Skip(16).ToArray();
-            Debug.Write(Encoding.ASCII.GetString(iv));
 
             SymmetricAlgorithm aes = Aes.Create();
             aes.KeySize = 128;
@@ -66,9 +65,9 @@ namespace Password_Storage
                 {
                     using (CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read))
                     {
-                        byte[] decryptedBytes = new byte[message.Length];
-                        cs.Read(decryptedBytes, 0, decryptedBytes.Length);
-                        return decryptedBytes;
+                        byte[] decrypted_bytes = new byte[message.Length];
+                        cs.Read(decrypted_bytes, 0, decrypted_bytes.Length);
+                        return decrypted_bytes;
                     }
                 }
             }catch (CryptographicException ce)
@@ -131,11 +130,9 @@ namespace Password_Storage
                         cs.Write(message, 0, message.Length);
                     }
 
-                    //string encrypted = Convert.ToBase64String(ms.ToArray());
-                    //string iv_string = ByteArrayToHexString(aes.IV);
+                    
                     byte[] enc_message = aes.IV.Concat(ms.ToArray()).ToArray();
                     return enc_message;
-                    //return iv_string + encrypted;
                 }
             }
             catch (Exception e)
