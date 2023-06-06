@@ -29,7 +29,7 @@ namespace Password_Storage
         /// </summary>
         private void InitializeComponent()
         {
-            load_btn = new System.Windows.Forms.Button();
+            open_btn = new System.Windows.Forms.Button();
             account_lbl = new System.Windows.Forms.Label();
             filename_lbl = new System.Windows.Forms.Label();
             username_lbl = new System.Windows.Forms.Label();
@@ -38,17 +38,20 @@ namespace Password_Storage
             add_account_btn = new System.Windows.Forms.Button();
             date_saved_tb = new System.Windows.Forms.Label();
             save_btn = new System.Windows.Forms.Button();
+            save_crsp_dialog = new System.Windows.Forms.SaveFileDialog();
+            open_crsp_dialog = new System.Windows.Forms.OpenFileDialog();
+            save_as_btn = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
-            // load_btn
+            // open_btn
             // 
-            load_btn.Location = new System.Drawing.Point(12, 12);
-            load_btn.Name = "load_btn";
-            load_btn.Size = new System.Drawing.Size(328, 23);
-            load_btn.TabIndex = 0;
-            load_btn.Text = "Load CRSP";
-            load_btn.UseVisualStyleBackColor = true;
-            load_btn.Click += load_btn_Click;
+            open_btn.Location = new System.Drawing.Point(12, 12);
+            open_btn.Name = "open_btn";
+            open_btn.Size = new System.Drawing.Size(328, 23);
+            open_btn.TabIndex = 0;
+            open_btn.Text = "Open CRSP";
+            open_btn.UseVisualStyleBackColor = true;
+            open_btn.Click += open_btn_Click;
             // 
             // account_lbl
             // 
@@ -135,11 +138,33 @@ namespace Password_Storage
             save_btn.UseVisualStyleBackColor = true;
             save_btn.Click += save_btn_Click;
             // 
+            // save_crsp_dialog
+            // 
+            save_crsp_dialog.DefaultExt = "crsp";
+            save_crsp_dialog.Filter = "crispy encrypt files (*.crsp)|*.crsp";
+            // 
+            // open_crsp_dialog
+            // 
+            open_crsp_dialog.DefaultExt = "crsp";
+            open_crsp_dialog.Filter = "crispy encrypt files (*.crsp)|*.crsp";
+            // 
+            // save_as_btn
+            // 
+            save_as_btn.Enabled = false;
+            save_as_btn.Location = new System.Drawing.Point(12, 276);
+            save_as_btn.Name = "save_as_btn";
+            save_as_btn.Size = new System.Drawing.Size(328, 23);
+            save_as_btn.TabIndex = 8;
+            save_as_btn.Text = "Save As";
+            save_as_btn.UseVisualStyleBackColor = true;
+            save_as_btn.Click += save_as_btn_Click;
+            // 
             // Main_Form
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(358, 280);
+            ClientSize = new System.Drawing.Size(358, 309);
+            Controls.Add(save_as_btn);
             Controls.Add(save_btn);
             Controls.Add(date_saved_tb);
             Controls.Add(add_account_btn);
@@ -148,7 +173,7 @@ namespace Password_Storage
             Controls.Add(username_lbl);
             Controls.Add(filename_lbl);
             Controls.Add(account_lbl);
-            Controls.Add(load_btn);
+            Controls.Add(open_btn);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "Main_Form";
@@ -159,7 +184,7 @@ namespace Password_Storage
         }
 
         #endregion
-        private System.Windows.Forms.Button load_btn;
+        private System.Windows.Forms.Button open_btn;
         private System.Windows.Forms.Label account_lbl;
         private System.Windows.Forms.Label filename_lbl;
         private System.Windows.Forms.Label username_lbl;
@@ -168,6 +193,9 @@ namespace Password_Storage
         private System.Windows.Forms.Button add_account_btn;
         private System.Windows.Forms.Label date_saved_tb;
         private System.Windows.Forms.Button save_btn;
+        private System.Windows.Forms.SaveFileDialog save_crsp_dialog;
+        private System.Windows.Forms.OpenFileDialog open_crsp_dialog;
+        private System.Windows.Forms.Button save_as_btn;
     }
 }
 

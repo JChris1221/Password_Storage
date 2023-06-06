@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Text;
+using System.Drawing.Design;
 
 namespace Password_Storage
 {
@@ -20,35 +21,47 @@ namespace Password_Storage
             InitializeComponent();
             crispy_encrypt = new CrispyEncrypt();
         }
-        private void load_btn_Click(object sender, EventArgs e)
+        private void open_btn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog load_json = new OpenFileDialog();
             enter_password_form enter_password = new enter_password_form();
             enter_password.crispy_encrypt = this.crispy_encrypt;
 
-            if (load_json.ShowDialog() == DialogResult.OK)
+            if (open_crsp_dialog.ShowDialog() == DialogResult.OK)
             {
                 if (enter_password.ShowDialog() == DialogResult.OK)
                 {
                     this.key = enter_password.key;
                     Debug.Write(Encoding.ASCII.GetString(this.key));
-                    current_file = load_json.FileName;
-                    accounts = CRSPManager.LoadCRSP(current_file, this.key);
-
-                    if (accounts == null)
-                    {
-                        MessageBox.Show("Invalid key", "Decryption Failed", MessageBoxButtons.OK);
-                    }
-                    else
-                    {
-                        filename_lbl.Text = "Current File: " + current_file;
-                        save_btn.Enabled = true;
-                        accounts_bl = new BindingList<Account>(accounts);
-                        accounts_cb.DataSource = accounts_bl;
-                        accounts_cb.Enabled = true;
-                    }
+                    current_file = open_crsp_dialog.FileName;
+                    OpenCRSP();       
                 }
             }
+        }
+
+        private void save_btn_Click(Object sender, EventArgs e)
+        {
+            CRSPManager.SaveCRSP(current_file, accounts, this.key);
+            OpenCRSP();
+        }
+
+        private void save_as_btn_Click(Object sender, EventArgs e)
+        {
+
+            
+            if (save_crsp_dialog.ShowDialog() == DialogResult.OK)
+            {
+                enter_password_form enter_pass = new enter_password_form();
+                enter_pass.crispy_encrypt = this.crispy_encrypt;
+                if (enter_pass.ShowDialog() == DialogResult.OK)
+                {
+                    this.key = enter_pass.key;
+                    this.current_file = save_crsp_dialog.FileName;
+                    CRSPManager.SaveCRSP(current_file, accounts, this.key);
+                }
+
+            }
+            OpenCRSP();
+
         }
 
         private void accounts_cb_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,39 +96,36 @@ namespace Password_Storage
 
                 if (!accounts_cb.Enabled)
                     accounts_cb.Enabled = true;
-                if (!save_btn.Enabled)
-                    save_btn.Enabled = true;
-            }
 
+                if (current_file != "" && current_file != null && !save_btn.Enabled)
+                    save_btn.Enabled = true;
+
+                if (!save_as_btn.Enabled)
+                    save_as_btn.Enabled = true;
+
+            }
         }
 
-        private void save_btn_Click(Object sender, EventArgs e)
+        private void OpenCRSP()
         {
-            SaveFileDialog save_form = new SaveFileDialog();
-            save_form.Title = "Save CSRP";
-            save_form.Filter = "crispy encrypt files (*.crsp)|*.crsp";
-            save_form.DefaultExt = "crsp";
-            save_form.CheckPathExists = true;
-            //save_form.CheckFileExists = true;
+            accounts = CRSPManager.LoadCRSP(current_file, this.key);
 
-            if (current_file == "" || current_file == null)
+            if (accounts == null)
             {
-                if (save_form.ShowDialog() == DialogResult.OK)
-                {
-                    enter_password_form enter_pass = new enter_password_form();
-                    enter_pass.crispy_encrypt = this.crispy_encrypt;
-                    if (enter_pass.ShowDialog() == DialogResult.OK)
-                    {
-                        this.key = enter_pass.key;
-                        Debug.Write(Encoding.ASCII.GetString(this.key));
-                        this.current_file = save_form.FileName;
-                    }
-                }
+                MessageBox.Show("Invalid key", "Decryption Failed", MessageBoxButtons.OK);
+                current_file = null;
             }
             else
-                CRSPManager.SaveCRSP(current_file, accounts, this.key);
-        }
+            {
+                filename_lbl.Text = "Current File: " + current_file;
+                save_btn.Enabled = true;
+                save_as_btn.Enabled = true;
 
+                accounts_bl = new BindingList<Account>(accounts);
+                accounts_cb.DataSource = accounts_bl;
+                accounts_cb.Enabled = true;
+            }
+        }
     }
 
 }
