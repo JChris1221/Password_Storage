@@ -113,8 +113,7 @@ namespace Password_Storage
                     }
                 }
             }
-
-            if (accounts.Count > 0)
+            else
                 CRSPManager.SaveCRSP(current_file, accounts, this.key);
         }
 
