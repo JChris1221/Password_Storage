@@ -36,17 +36,17 @@ namespace Password_Storage
             // 
             // password_tb
             // 
-            password_tb.Location = new System.Drawing.Point(12, 13);
+            password_tb.Location = new System.Drawing.Point(12, 12);
             password_tb.Name = "password_tb";
             password_tb.PasswordChar = '*';
             password_tb.PlaceholderText = "Enter Key";
-            password_tb.Size = new System.Drawing.Size(316, 23);
+            password_tb.Size = new System.Drawing.Size(229, 23);
             password_tb.TabIndex = 0;
             password_tb.KeyDown += password_tb_KeyDown;
             // 
             // ok_btn
             // 
-            ok_btn.Location = new System.Drawing.Point(85, 43);
+            ok_btn.Location = new System.Drawing.Point(45, 41);
             ok_btn.Name = "ok_btn";
             ok_btn.Size = new System.Drawing.Size(75, 23);
             ok_btn.TabIndex = 1;
@@ -56,7 +56,7 @@ namespace Password_Storage
             // 
             // cancel_btn
             // 
-            cancel_btn.Location = new System.Drawing.Point(166, 43);
+            cancel_btn.Location = new System.Drawing.Point(126, 41);
             cancel_btn.Name = "cancel_btn";
             cancel_btn.Size = new System.Drawing.Size(75, 23);
             cancel_btn.TabIndex = 2;
@@ -68,7 +68,7 @@ namespace Password_Storage
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(340, 78);
+            ClientSize = new System.Drawing.Size(255, 78);
             Controls.Add(cancel_btn);
             Controls.Add(ok_btn);
             Controls.Add(password_tb);
