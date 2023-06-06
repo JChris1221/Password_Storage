@@ -45,7 +45,7 @@ namespace Password_Storage
             load_btn.Location = new System.Drawing.Point(12, 12);
             load_btn.Name = "load_btn";
             load_btn.Size = new System.Drawing.Size(328, 23);
-            load_btn.TabIndex = 2;
+            load_btn.TabIndex = 0;
             load_btn.Text = "Load CRSP";
             load_btn.UseVisualStyleBackColor = true;
             load_btn.Click += load_btn_Click;
@@ -61,11 +61,10 @@ namespace Password_Storage
             // 
             // filename_lbl
             // 
-            filename_lbl.AutoSize = true;
             filename_lbl.Location = new System.Drawing.Point(12, 39);
             filename_lbl.Name = "filename_lbl";
-            filename_lbl.Size = new System.Drawing.Size(81, 15);
-            filename_lbl.TabIndex = 5;
+            filename_lbl.Size = new System.Drawing.Size(328, 44);
+            filename_lbl.TabIndex = 7;
             filename_lbl.Text = "No file loaded";
             // 
             // username_lbl
@@ -76,7 +75,7 @@ namespace Password_Storage
             username_lbl.Name = "username_lbl";
             username_lbl.Padding = new System.Windows.Forms.Padding(1);
             username_lbl.Size = new System.Drawing.Size(328, 21);
-            username_lbl.TabIndex = 6;
+            username_lbl.TabIndex = 2;
             username_lbl.Text = "Username";
             // 
             // password_lbl
@@ -87,18 +86,20 @@ namespace Password_Storage
             password_lbl.Name = "password_lbl";
             password_lbl.Padding = new System.Windows.Forms.Padding(1);
             password_lbl.Size = new System.Drawing.Size(328, 21);
-            password_lbl.TabIndex = 7;
+            password_lbl.TabIndex = 3;
             password_lbl.Text = "Password";
             // 
             // accounts_cb
             // 
+            accounts_cb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            accounts_cb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             accounts_cb.DisplayMember = "account_name";
             accounts_cb.Enabled = false;
             accounts_cb.FormattingEnabled = true;
             accounts_cb.Location = new System.Drawing.Point(108, 86);
             accounts_cb.Name = "accounts_cb";
             accounts_cb.Size = new System.Drawing.Size(232, 23);
-            accounts_cb.TabIndex = 8;
+            accounts_cb.TabIndex = 1;
             accounts_cb.ValueMember = "id";
             accounts_cb.SelectedIndexChanged += accounts_cb_SelectedIndexChanged;
             // 
@@ -107,7 +108,7 @@ namespace Password_Storage
             add_account_btn.Location = new System.Drawing.Point(12, 218);
             add_account_btn.Name = "add_account_btn";
             add_account_btn.Size = new System.Drawing.Size(328, 23);
-            add_account_btn.TabIndex = 9;
+            add_account_btn.TabIndex = 5;
             add_account_btn.Text = "Add Account";
             add_account_btn.UseVisualStyleBackColor = true;
             add_account_btn.Click += add_account_btn_Click;
@@ -120,7 +121,7 @@ namespace Password_Storage
             date_saved_tb.Name = "date_saved_tb";
             date_saved_tb.Padding = new System.Windows.Forms.Padding(1);
             date_saved_tb.Size = new System.Drawing.Size(328, 21);
-            date_saved_tb.TabIndex = 11;
+            date_saved_tb.TabIndex = 4;
             date_saved_tb.Text = "Date Saved";
             // 
             // save_btn
@@ -129,7 +130,7 @@ namespace Password_Storage
             save_btn.Location = new System.Drawing.Point(12, 247);
             save_btn.Name = "save_btn";
             save_btn.Size = new System.Drawing.Size(328, 23);
-            save_btn.TabIndex = 12;
+            save_btn.TabIndex = 6;
             save_btn.Text = "Save";
             save_btn.UseVisualStyleBackColor = true;
             save_btn.Click += save_file_btn_Click;

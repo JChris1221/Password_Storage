@@ -119,7 +119,7 @@ namespace Password_Storage
             aes.BlockSize = 128;
             aes.Key = key;
             aes.IV = hash.ComputeHash(Encoding.ASCII.GetBytes(DateTime.Now.ToString()));
-            Debug.Write(Encoding.ASCII.GetString(aes.IV));
+            
 
             try
             {

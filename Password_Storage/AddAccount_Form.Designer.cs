@@ -41,7 +41,7 @@ namespace Password_Storage
             add_btn.Location = new System.Drawing.Point(12, 99);
             add_btn.Name = "add_btn";
             add_btn.Size = new System.Drawing.Size(112, 23);
-            add_btn.TabIndex = 0;
+            add_btn.TabIndex = 3;
             add_btn.Text = "Add";
             add_btn.UseVisualStyleBackColor = true;
             add_btn.Click += add_account_btn_Click;
@@ -58,7 +58,6 @@ namespace Password_Storage
             // 
             password_tb.Location = new System.Drawing.Point(12, 70);
             password_tb.Name = "password_tb";
-            password_tb.PasswordChar = '*';
             password_tb.PlaceholderText = "Password";
             password_tb.Size = new System.Drawing.Size(240, 23);
             password_tb.TabIndex = 2;
@@ -69,7 +68,7 @@ namespace Password_Storage
             acc_name_tb.Name = "acc_name_tb";
             acc_name_tb.PlaceholderText = "Account Name";
             acc_name_tb.Size = new System.Drawing.Size(240, 23);
-            acc_name_tb.TabIndex = 3;
+            acc_name_tb.TabIndex = 0;
             // 
             // cancel_btn
             // 

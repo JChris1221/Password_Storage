@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace Password_Storage
 {
-    public partial class EnterPassword_Form : Form
+    public partial class enter_password_form : Form
     {
         public byte[] key;
         public CrispyEncrypt crispy_encrypt;
-        public EnterPassword_Form()
+        public enter_password_form()
         {
             InitializeComponent();
         }
@@ -15,16 +15,22 @@ namespace Password_Storage
         private void ok_btn_Click(object sender, EventArgs e)
         {
 
-            //string check_message = crispy_encrypt.CheckKey(password_tb.Text);
-            this.key = crispy_encrypt.HashString(password_tb.Text);
-            string check_message = crispy_encrypt.CheckKey(key);
+            if (password_tb.Text == "")
+                MessageBox.Show("Enter Password", "Enter Password");
 
-            if (check_message == null)
-                this.DialogResult = DialogResult.OK;
             else
-                throw new Exception(check_message);
+            {
+                this.key = crispy_encrypt.HashString(password_tb.Text);
+                string check_message = crispy_encrypt.CheckKey(key);
 
-            this.Close();
+                if (check_message == null)
+                    this.DialogResult = DialogResult.OK;
+                else
+                    throw new Exception(check_message);
+
+                this.Close();
+            }
+
         }
 
         private void cancel_btn_Click(object sender, EventArgs e)
@@ -33,5 +39,10 @@ namespace Password_Storage
             this.Close();
         }
 
+        private void password_tb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                ok_btn.PerformClick();
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace Password_Storage
         private void load_btn_Click(object sender, EventArgs e)
         {
             OpenFileDialog load_json = new OpenFileDialog();
-            EnterPassword_Form enter_password = new EnterPassword_Form();
+            enter_password_form enter_password = new enter_password_form();
             enter_password.crispy_encrypt = this.crispy_encrypt;
 
             if (load_json.ShowDialog() == DialogResult.OK)
@@ -39,7 +39,8 @@ namespace Password_Storage
                     {
                         MessageBox.Show("Invalid key", "Decryption Failed", MessageBoxButtons.OK);
                     }
-                    else{
+                    else
+                    {
                         filename_lbl.Text = "Current File: " + current_file;
                         save_btn.Enabled = true;
                         accounts_bl = new BindingList<Account>(accounts);
@@ -62,17 +63,18 @@ namespace Password_Storage
         {
             AddAccount_Form add_form = new AddAccount_Form();
             if (accounts == null)
-            {
-                accounts = new List<Account>();
                 add_form.current_id = 0;
-            }
             else
                 add_form.current_id = accounts.Last().id + 1;
-            //add_form.Text = add_form.Text + "(" + add_form.current_id + ")";
+
 
 
             if (add_form.ShowDialog() == DialogResult.OK)
             {
+
+                if (accounts == null)
+                    accounts = new List<Account>();
+
                 Account account = add_form.account;
                 accounts.Add(account);
                 accounts_bl = new BindingList<Account>(accounts);
@@ -101,7 +103,7 @@ namespace Password_Storage
             {
                 if (save_form.ShowDialog() == DialogResult.OK)
                 {
-                    EnterPassword_Form enter_pass = new EnterPassword_Form();
+                    enter_password_form enter_pass = new enter_password_form();
                     enter_pass.crispy_encrypt = this.crispy_encrypt;
                     if (enter_pass.ShowDialog() == DialogResult.OK)
                     {
