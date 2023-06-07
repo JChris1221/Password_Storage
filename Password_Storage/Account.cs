@@ -26,5 +26,12 @@ namespace Password_Storage
             this.password = _password;
             this.date_saved = _date_saved;
         }
+
+        public void UpdateAccount(string _account_name, string _username, string _password)
+        {
+            this.account_name = _account_name;
+            this.username = _username;
+            this.password = _password;
+        }
     }
 }

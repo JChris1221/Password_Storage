@@ -1,7 +1,7 @@
 ﻿
 namespace Password_Storage
 {
-    partial class enter_password_form
+    partial class EnterPasswordForm
     {
         /// <summary>
         /// Required designer variable.

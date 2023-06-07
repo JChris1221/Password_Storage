@@ -185,12 +185,14 @@ namespace Password_Storage
             // 
             // edit_btn
             // 
+            edit_btn.Enabled = false;
             edit_btn.Location = new System.Drawing.Point(117, 135);
             edit_btn.Name = "edit_btn";
             edit_btn.Size = new System.Drawing.Size(90, 24);
             edit_btn.TabIndex = 10;
             edit_btn.Text = "Edit";
             edit_btn.UseVisualStyleBackColor = true;
+            edit_btn.Click += edit_btn_Click;
             // 
             // panel1
             // 
@@ -210,6 +212,7 @@ namespace Password_Storage
             // remove_btn
             // 
             remove_btn.BackColor = System.Drawing.Color.IndianRed;
+            remove_btn.Enabled = false;
             remove_btn.Location = new System.Drawing.Point(224, 135);
             remove_btn.Name = "remove_btn";
             remove_btn.Size = new System.Drawing.Size(90, 24);

@@ -23,7 +23,7 @@ namespace Password_Storage
         }
         private void open_btn_Click(object sender, EventArgs e)
         {
-            enter_password_form enter_password = new enter_password_form();
+            EnterPasswordForm enter_password = new EnterPasswordForm();
             enter_password.crispy_encrypt = this.crispy_encrypt;
 
             if (open_crsp_dialog.ShowDialog() == DialogResult.OK)
@@ -50,7 +50,7 @@ namespace Password_Storage
 
             if (save_crsp_dialog.ShowDialog() == DialogResult.OK)
             {
-                enter_password_form enter_pass = new enter_password_form();
+                EnterPasswordForm enter_pass = new EnterPasswordForm();
                 enter_pass.crispy_encrypt = this.crispy_encrypt;
                 if (enter_pass.ShowDialog() == DialogResult.OK)
                 {
@@ -74,21 +74,23 @@ namespace Password_Storage
 
         private void add_account_btn_Click(object sender, EventArgs e)
         {
-            Account_Form add_form = new Account_Form();
+            AccountForm add_account = new AccountForm();
+            add_account.Text = "Add Account";
+
             if (accounts == null)
-                add_form.current_id = 0;
+                add_account.current_id = 0;
             else
-                add_form.current_id = accounts.Last().id + 1;
+                add_account.current_id = accounts.Last().id + 1;
 
 
 
-            if (add_form.ShowDialog() == DialogResult.OK)
+            if (add_account.ShowDialog() == DialogResult.OK)
             {
 
                 if (accounts == null)
                     accounts = new List<Account>();
 
-                Account account = add_form.account;
+                Account account = add_account.account;
                 accounts.Add(account);
                 accounts_bl = new BindingList<Account>(accounts);
                 accounts_cb.DataSource = accounts_bl;
@@ -106,6 +108,19 @@ namespace Password_Storage
             }
         }
 
+        private void edit_btn_Click(object sender, EventArgs e)
+        {
+            AccountForm edit_account = new AccountForm();
+            edit_account.Text = "Edit Account";
+            Account selected = accounts.Single(a => a.id == (int)accounts_cb.SelectedValue);
+            edit_account.current_id = selected.id;
+            edit_account.acc_name_tb.Text = selected.account_name;
+            edit_account.username_tb.Text = selected.username;
+            edit_account.password_tb.Text = selected.password;
+            
+            edit_account.ShowDialog();
+        }
+
         private void OpenCRSP()
         {
             accounts = CRSPManager.LoadCRSP(current_file, this.key);
@@ -114,6 +129,7 @@ namespace Password_Storage
             {
                 MessageBox.Show("Invalid key", "Decryption Failed", MessageBoxButtons.OK);
                 current_file = null;
+              
             }
             else
             {
@@ -124,6 +140,9 @@ namespace Password_Storage
                 accounts_bl = new BindingList<Account>(accounts);
                 accounts_cb.DataSource = accounts_bl;
                 accounts_cb.Enabled = true;
+
+                edit_btn.Enabled = true;
+              
             }
         }
     }

@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace Password_Storage
 {
-    public partial class AddAccount_Form : Form
+    public partial class AccountForm : Form
     {
         public Account account { get; set; }
         public int current_id { get; set; }
-        public AddAccount_Form()
+        public AccountForm()
         {
             InitializeComponent();
         }
 
-        private void add_account_btn_Click(object sender, EventArgs e)
+        private void save_account_btn_Click(object sender, EventArgs e)
         {
             account = new Account(current_id, acc_name_tb.Text, username_tb.Text, password_tb.Text, DateTime.Now);
             this.DialogResult = DialogResult.OK;

@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace Password_Storage
 {
-    public partial class enter_password_form : Form
+    public partial class EnterPasswordForm : Form
     {
         public byte[] key;
         public CrispyEncrypt crispy_encrypt;
-        public enter_password_form()
+        public EnterPasswordForm()
         {
             InitializeComponent();
         }

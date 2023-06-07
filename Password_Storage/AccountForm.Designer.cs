@@ -1,7 +1,7 @@
 ﻿
 namespace Password_Storage
 {
-    partial class AddAccount_Form
+    partial class AccountForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,22 +29,22 @@ namespace Password_Storage
         /// </summary>
         private void InitializeComponent()
         {
-            add_btn = new System.Windows.Forms.Button();
+            save_btn = new System.Windows.Forms.Button();
             username_tb = new System.Windows.Forms.TextBox();
             password_tb = new System.Windows.Forms.TextBox();
             acc_name_tb = new System.Windows.Forms.TextBox();
             cancel_btn = new System.Windows.Forms.Button();
             SuspendLayout();
             // 
-            // add_btn
+            // save_btn
             // 
-            add_btn.Location = new System.Drawing.Point(12, 99);
-            add_btn.Name = "add_btn";
-            add_btn.Size = new System.Drawing.Size(112, 23);
-            add_btn.TabIndex = 3;
-            add_btn.Text = "Add";
-            add_btn.UseVisualStyleBackColor = true;
-            add_btn.Click += add_account_btn_Click;
+            save_btn.Location = new System.Drawing.Point(12, 99);
+            save_btn.Name = "save_btn";
+            save_btn.Size = new System.Drawing.Size(112, 23);
+            save_btn.TabIndex = 3;
+            save_btn.Text = "Save";
+            save_btn.UseVisualStyleBackColor = true;
+            save_btn.Click += save_account_btn_Click;
             // 
             // username_tb
             // 
@@ -80,7 +80,7 @@ namespace Password_Storage
             cancel_btn.UseVisualStyleBackColor = true;
             cancel_btn.Click += cancel_btn_Click;
             // 
-            // AddAccount_Form
+            // AccountForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,10 +89,10 @@ namespace Password_Storage
             Controls.Add(acc_name_tb);
             Controls.Add(password_tb);
             Controls.Add(username_tb);
-            Controls.Add(add_btn);
+            Controls.Add(save_btn);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             MaximizeBox = false;
-            Name = "AddAccount_Form";
+            Name = "AccountForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "Add Account";
             ResumeLayout(false);
@@ -101,10 +101,10 @@ namespace Password_Storage
 
         #endregion
 
-        private System.Windows.Forms.Button add_btn;
-        private System.Windows.Forms.TextBox username_tb;
-        private System.Windows.Forms.TextBox password_tb;
-        private System.Windows.Forms.TextBox acc_name_tb;
+        private System.Windows.Forms.Button save_btn;
         private System.Windows.Forms.Button cancel_btn;
+        public System.Windows.Forms.TextBox username_tb;
+        public System.Windows.Forms.TextBox password_tb;
+        public System.Windows.Forms.TextBox acc_name_tb;
     }
 }
