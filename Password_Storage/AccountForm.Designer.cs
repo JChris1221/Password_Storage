@@ -94,7 +94,7 @@ namespace Password_Storage
             MaximizeBox = false;
             Name = "AccountForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            Text = "Add Account";
+            Text = "Account";
             ResumeLayout(false);
             PerformLayout();
         }

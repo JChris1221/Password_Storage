@@ -13,15 +13,28 @@ namespace Password_Storage
     public partial class AccountForm : Form
     {
         public Account account { get; set; }
-        public int current_id { get; set; }
+        //public int current_id { get; set; }
         public AccountForm()
         {
             InitializeComponent();
         }
 
+        public AccountForm(Account _account)
+        {
+            InitializeComponent();
+            account = _account;
+            this.acc_name_tb.Text = this.account.account_name;
+            this.username_tb.Text = this.account.username;
+            this.password_tb.Text = this.account.password;
+        }
+
         private void save_account_btn_Click(object sender, EventArgs e)
         {
-            account = new Account(current_id, acc_name_tb.Text, username_tb.Text, password_tb.Text, DateTime.Now);
+            //account = new Account(account.id, acc_name_tb.Text, username_tb.Text, password_tb.Text, DateTime.Now);
+            account.account_name = acc_name_tb.Text;
+            account.username = username_tb.Text;
+            account.password = password_tb.Text;
+            
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

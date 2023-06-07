@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -8,6 +10,29 @@ namespace Password_Storage
 {
     public class CRSPManager
     {
+        CrispyEncrypt encryptor;
+        List<Account> accounts;
+
+        public CrispyEncrypt Encryptor { 
+            get{ return this.encryptor; } 
+        }
+
+        public List<Account> Accounts { 
+            get { return this.accounts; }
+            set { this.accounts = value; }
+        }
+
+        public CRSPManager()
+        {
+            this.accounts = new List<Account>();
+            this.encryptor = new CrispyEncrypt();
+        }
+
+        public CRSPManager(List<Account> _accounts)
+        {
+            this.accounts = _accounts;
+            this.encryptor = new CrispyEncrypt();
+        }
         public List<Account> LoadCRSP(string filename, byte[] key)
         {
             CrispyEncrypt ce = new CrispyEncrypt();
@@ -38,6 +63,42 @@ namespace Password_Storage
 
             File.WriteAllBytes(filename, encrypted_json);
             return true;
+        }
+
+        public bool Update(Account _account)
+        {
+            accounts.Single(x => x.id == _account.id).UpdateAccount(_account);
+            return true;
+        }
+
+        public bool Delete(Account _account)
+        {
+            accounts.Remove(_account);
+            return true;
+        }
+
+        public bool Delete(int id)
+        {
+            accounts.Remove(accounts.Single(r => r.id == id));
+            return true;
+        }
+
+        public bool Add(Account _account)
+        {
+            int id;
+            if (accounts.Count > 0)
+                id = accounts.OrderBy(o => o.id).ToList().Last().id + 1;
+            else
+                id = 0;
+
+            _account.id = id;
+            accounts.Add(_account);
+            return true;
+        }
+
+        public Account Get(int id)
+        {
+            return accounts.SingleOrDefault(x => x.id == id);
         }
     }
 }
