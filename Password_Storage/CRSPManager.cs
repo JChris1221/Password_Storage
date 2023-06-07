@@ -6,6 +6,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Newtonsoft.Json;
 
+
+// This class manages serialization and deserialization crsp files as well managing the accounts list stored inside
+
 namespace Password_Storage
 {
     public class CRSPManager
@@ -35,12 +38,11 @@ namespace Password_Storage
         }
         public List<Account> LoadCRSP(string filename, byte[] key)
         {
-            CrispyEncrypt ce = new CrispyEncrypt();
 
             byte[] crsp_bytes = File.ReadAllBytes(filename);
             try
             {
-                string crsp = Encoding.ASCII.GetString(ce.Decrypt(crsp_bytes, key));
+                string crsp = Encoding.ASCII.GetString(encryptor.Decrypt(crsp_bytes, key));
                 return JsonConvert.DeserializeObject<List<Account>>(crsp);
             }
             catch (Exception ex)
@@ -57,9 +59,8 @@ namespace Password_Storage
             settings.DateFormatString = "yyyy-MM-dd";
             settings.Formatting = Formatting.Indented;
 
-            CrispyEncrypt ce = new CrispyEncrypt();
             byte[] json_bytes = Encoding.ASCII.GetBytes(JsonConvert.SerializeObject(accounts, settings));
-            byte[] encrypted_json = ce.Encrypt(json_bytes, key);
+            byte[] encrypted_json = encryptor.Encrypt(json_bytes, key);
 
             File.WriteAllBytes(filename, encrypted_json);
             return true;

@@ -5,6 +5,9 @@ using System.IO;
 using System.Diagnostics;
 using System.Linq;
 
+
+//this class is used for encryption, decryption and hashing of keys
+
 namespace Password_Storage
 {
     public class CrispyEncrypt
