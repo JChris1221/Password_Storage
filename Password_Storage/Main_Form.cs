@@ -74,7 +74,7 @@ namespace Password_Storage
 
         private void add_account_btn_Click(object sender, EventArgs e)
         {
-            AddAccount_Form add_form = new AddAccount_Form();
+            Account_Form add_form = new Account_Form();
             if (accounts == null)
                 add_form.current_id = 0;
             else
