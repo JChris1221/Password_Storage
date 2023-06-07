@@ -118,7 +118,12 @@ namespace Password_Storage
             edit_account.username_tb.Text = selected.username;
             edit_account.password_tb.Text = selected.password;
             
-            edit_account.ShowDialog();
+            if(edit_account.ShowDialog() == DialogResult.OK)
+            {
+                accounts.Single(a => a.id == edit_account.current_id).UpdateAccount(edit_account.account);
+                accounts_bl = new BindingList<Account>(accounts);
+                accounts_cb.DataSource = accounts_bl;
+            }
         }
 
         private void OpenCRSP()

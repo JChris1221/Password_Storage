@@ -33,5 +33,12 @@ namespace Password_Storage
             this.username = _username;
             this.password = _password;
         }
+
+        public void UpdateAccount(Account _account)
+        {
+            this.account_name = _account.account_name;
+            this.username = _account.username;
+            this.password = _account.password;
+        }
     }
 }
