@@ -6,9 +6,9 @@ using Newtonsoft.Json;
 
 namespace Password_Storage
 {
-    public static class CRSPManager
+    public class CRSPManager
     {
-        public static List<Account> LoadCRSP(string filename, byte[] key)
+        public List<Account> LoadCRSP(string filename, byte[] key)
         {
             CrispyEncrypt ce = new CrispyEncrypt();
 
@@ -26,7 +26,7 @@ namespace Password_Storage
         }
 
         //Saves file. If no file exist a new file is created;
-        public static bool SaveCRSP(string filename, List<Account> accounts, byte[] key)
+        public bool SaveCRSP(string filename, List<Account> accounts, byte[] key)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.DateFormatString = "yyyy-MM-dd";

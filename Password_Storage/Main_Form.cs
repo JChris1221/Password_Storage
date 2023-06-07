@@ -11,6 +11,7 @@ namespace Password_Storage
 {
     public partial class Main_Form : Form
     {
+        private CRSPManager crsp_manager;
         private List<Account> accounts;
         private BindingList<Account> accounts_bl;
         private byte[] key;
@@ -40,14 +41,12 @@ namespace Password_Storage
 
         private void save_btn_Click(Object sender, EventArgs e)
         {
-            CRSPManager.SaveCRSP(current_file, accounts, this.key);
-            OpenCRSP();
+            if(crsp_manager.SaveCRSP(current_file, accounts, this.key))
+                OpenCRSP();
         }
 
         private void save_as_btn_Click(Object sender, EventArgs e)
         {
-
-
             if (save_crsp_dialog.ShowDialog() == DialogResult.OK)
             {
                 EnterPasswordForm enter_pass = new EnterPasswordForm();
@@ -56,7 +55,7 @@ namespace Password_Storage
                 {
                     this.key = enter_pass.key;
                     this.current_file = save_crsp_dialog.FileName;
-                    CRSPManager.SaveCRSP(current_file, accounts, this.key);
+                    crsp_manager.SaveCRSP(current_file, accounts, this.key);
                 }
 
             }
@@ -128,7 +127,7 @@ namespace Password_Storage
 
         private void OpenCRSP()
         {
-            accounts = CRSPManager.LoadCRSP(current_file, this.key);
+            accounts = crsp_manager.LoadCRSP(current_file, this.key);
 
             if (accounts == null)
             {
