@@ -219,6 +219,7 @@ namespace Password_Storage
             remove_btn.TabIndex = 11;
             remove_btn.Text = "Remove";
             remove_btn.UseVisualStyleBackColor = false;
+            remove_btn.Click += remove_btn_Click;
             // 
             // Main_Form
             // 

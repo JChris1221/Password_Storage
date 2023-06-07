@@ -117,8 +117,8 @@ namespace Password_Storage
             edit_account.acc_name_tb.Text = selected.account_name;
             edit_account.username_tb.Text = selected.username;
             edit_account.password_tb.Text = selected.password;
-            
-            if(edit_account.ShowDialog() == DialogResult.OK)
+
+            if (edit_account.ShowDialog() == DialogResult.OK)
             {
                 accounts.Single(a => a.id == edit_account.current_id).UpdateAccount(edit_account.account);
                 accounts_bl = new BindingList<Account>(accounts);
@@ -134,7 +134,7 @@ namespace Password_Storage
             {
                 MessageBox.Show("Invalid key", "Decryption Failed", MessageBoxButtons.OK);
                 current_file = null;
-              
+
             }
             else
             {
@@ -147,7 +147,19 @@ namespace Password_Storage
                 accounts_cb.Enabled = true;
 
                 edit_btn.Enabled = true;
-              
+                remove_btn.Enabled = true;
+            }
+        }
+
+        private void remove_btn_Click(object sender, EventArgs e)
+        {
+            int account_id = (int)accounts_cb.SelectedValue;
+            string confirmation = "Are you sure you want to delete this account? (This action cannot be undone)";
+            if (MessageBox.Show(confirmation, "Delete Account", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                accounts.Remove(accounts.Single(x => x.id == account_id));
+                accounts_bl = new BindingList<Account>(accounts);
+                accounts_cb.DataSource = accounts_bl;
             }
         }
     }
