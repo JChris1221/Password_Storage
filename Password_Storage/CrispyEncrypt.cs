@@ -77,7 +77,6 @@ namespace Password_Storage
                             bytes_read = cs.Read(decrypted_bytes, offset, decrypted_bytes.Length - offset);
                         }
                         while (bytes_read > 0);
-                        string bytes = BitConverter.ToString(decrypted_bytes);
                         return decrypted_bytes;
                         
                     }
