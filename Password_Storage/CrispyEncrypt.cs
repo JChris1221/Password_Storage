@@ -69,8 +69,17 @@ namespace Password_Storage
                     using (CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read))
                     {
                         byte[] decrypted_bytes = new byte[message.Length];
-                        cs.Read(decrypted_bytes, 0, decrypted_bytes.Length);
+                        int bytes_read = 0;
+                        int offset = 0;
+                        do
+                        {
+                            offset += bytes_read;
+                            bytes_read = cs.Read(decrypted_bytes, offset, decrypted_bytes.Length - offset);
+                        }
+                        while (bytes_read > 0);
+                        string bytes = BitConverter.ToString(decrypted_bytes);
                         return decrypted_bytes;
+                        
                     }
                 }
             }catch (CryptographicException ce)
