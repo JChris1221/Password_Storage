@@ -6,6 +6,8 @@ using System.Diagnostics;
 using System.ComponentModel;
 using System.Text;
 using System.Drawing.Design;
+using Password_Storage.Core.Models;
+using Password_Storage.Core.Utilities;
 
 namespace Password_Storage
 {
@@ -39,7 +41,7 @@ namespace Password_Storage
 
         private void save_btn_Click(Object sender, EventArgs e)
         {
-            if(crsp_manager.SaveCRSP(current_file, crsp_manager.Accounts, this.key))
+            if(crsp_manager.Save(current_file, crsp_manager.Accounts, this.key))
                 OpenCRSP();
         }
 
@@ -53,7 +55,7 @@ namespace Password_Storage
                 {
                     this.key = enter_pass.key;
                     this.current_file = save_crsp_dialog.FileName;
-                    crsp_manager.SaveCRSP(current_file, crsp_manager.Accounts, this.key);
+                    crsp_manager.Save(current_file, crsp_manager.Accounts, this.key);
                 }
 
             }
@@ -122,7 +124,7 @@ namespace Password_Storage
 
         private void OpenCRSP()
         {
-            List<Account> loaded_list = crsp_manager.LoadCRSP(current_file, this.key);
+            List<Account> loaded_list = crsp_manager.Load(current_file, this.key);
 
             if (loaded_list == null)
             {

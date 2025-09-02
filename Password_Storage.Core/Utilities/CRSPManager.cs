@@ -5,38 +5,42 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Newtonsoft.Json;
+using Password_Storage.Core.Interfaces.Utilities;
+using Password_Storage.Core.Models;
 
 
 // This class manages serialization and deserialization crsp files as well managing the accounts list stored inside
 
-namespace Password_Storage
+namespace Password_Storage.Core.Utilities
 {
-    public class CRSPManager
+    public class CRSPManager : ICRSPManager
     {
         CrispyEncrypt encryptor;
         List<Account> accounts;
 
-        public CrispyEncrypt Encryptor { 
-            get{ return this.encryptor; } 
+        public CrispyEncrypt Encryptor
+        {
+            get { return encryptor; }
         }
 
-        public List<Account> Accounts { 
-            get { return this.accounts; }
-            set { this.accounts = value; }
+        public List<Account> Accounts
+        {
+            get { return accounts; }
+            set { accounts = value; }
         }
 
         public CRSPManager()
         {
-            this.accounts = new List<Account>();
-            this.encryptor = new CrispyEncrypt();
+            accounts = new List<Account>();
+            encryptor = new CrispyEncrypt();
         }
 
         public CRSPManager(List<Account> _accounts)
         {
-            this.accounts = _accounts;
-            this.encryptor = new CrispyEncrypt();
+            accounts = _accounts;
+            encryptor = new CrispyEncrypt();
         }
-        public List<Account> LoadCRSP(string filename, byte[] key)
+        public List<Account> Load(string filename, byte[] key)
         {
 
             byte[] crsp_bytes = File.ReadAllBytes(filename);
@@ -53,7 +57,7 @@ namespace Password_Storage
         }
 
         //Saves file. If no file exist a new file is created;
-        public bool SaveCRSP(string filename, List<Account> accounts, byte[] key)
+        public bool Save(string filename, List<Account> accounts, byte[] key)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings();
             settings.DateFormatString = "yyyy-MM-dd";

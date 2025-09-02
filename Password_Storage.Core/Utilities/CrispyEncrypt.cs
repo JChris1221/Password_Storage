@@ -8,12 +8,12 @@ using System.Linq;
 
 //this class is used for encryption, decryption and hashing of keys
 
-namespace Password_Storage
+namespace Password_Storage.Core.Utilities
 {
     public class CrispyEncrypt
     {
         //takes 128 bit hex string and converts it to byte[16]
-        private static byte[] HexStringToByteArray(String hex)
+        private static byte[] HexStringToByteArray(string hex)
         {
             int number_chars = hex.Length;
             byte[] bytes = new byte[number_chars / 2];
@@ -29,28 +29,6 @@ namespace Password_Storage
                 hex.AppendFormat("{0:x2}", b);
             return hex.ToString();
         }
-
-        //public string Decrypt(string enc_text, string key)
-        //{
-        //    string iv = enc_text.Substring(0, 32);
-        //    string text = enc_text.Substring(32);
-        //    byte[] message = Convert.FromBase64String(text);
-
-        //    SymmetricAlgorithm aes = Aes.Create();
-        //    aes.KeySize = 128;
-        //    aes.Key = HexStringToByteArray(key);
-        //    aes.IV = HexStringToByteArray(iv);
-        //    using (MemoryStream ms = new MemoryStream(message))
-        //    {
-        //        using (CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read))
-        //        {
-        //            byte[] decryptedBytes = new byte[message.Length];
-        //            cs.Read(decryptedBytes, 0, decryptedBytes.Length);
-        //            return Encoding.ASCII.GetString(decryptedBytes);
-        //        }
-        //    }
-            
-        //}
 
         public byte[] Decrypt(byte[] enc_message, byte[] key)
         {
@@ -88,39 +66,6 @@ namespace Password_Storage
             }
 
         }
-
-
-        //public string Encrypt(string message, string key)
-        //{
-        //    byte[] byte_key = HexStringToByteArray(key);
-        //    byte[] byte_message = Encoding.ASCII.GetBytes(message);
-        //    SymmetricAlgorithm aes = Aes.Create();
-        //    HashAlgorithm hash = MD5.Create();
-        //    aes.BlockSize = 128;
-        //    aes.Key = byte_key;
-        //    aes.IV = hash.ComputeHash(Encoding.ASCII.GetBytes(DateTime.Now.ToString()));
-
-        //    try
-        //    {
-        //        using (MemoryStream ms = new MemoryStream())
-        //        {
-        //            using (CryptoStream cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
-        //            {
-        //                cs.Write(byte_message, 0, byte_message.Length);
-        //            }
-
-        //            string encrypted = Convert.ToBase64String(ms.ToArray());
-        //            string iv_string = ByteArrayToHexString(aes.IV);
-
-        //            return iv_string + encrypted;
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Debug.WriteLine(e.Message);
-        //        return null;
-        //    }
-        //}
 
         public byte[] Encrypt(byte[] message, byte[] key)
         {
@@ -184,7 +129,7 @@ namespace Password_Storage
         {
             byte[] hash_bytes = new byte[16];
             HashAlgorithm hash = MD5.Create();
-            hash_bytes = hash.ComputeHash(ASCIIEncoding.ASCII.GetBytes(key));
+            hash_bytes = hash.ComputeHash(Encoding.ASCII.GetBytes(key));
             return hash_bytes;
         }
     }
