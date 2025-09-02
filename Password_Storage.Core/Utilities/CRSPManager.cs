@@ -15,10 +15,10 @@ namespace Password_Storage.Core.Utilities
 {
     public class CRSPManager : ICRSPManager
     {
-        CrispyEncrypt encryptor;
+        IEncryptor encryptor;
         List<Account> accounts;
 
-        public CrispyEncrypt Encryptor
+        public IEncryptor Encryptor
         {
             get { return encryptor; }
         }

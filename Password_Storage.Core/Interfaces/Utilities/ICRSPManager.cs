@@ -6,7 +6,7 @@ namespace Password_Storage.Core.Interfaces.Utilities
     public interface ICRSPManager
     {
         List<Account> Accounts { get; set; }
-        CrispyEncrypt Encryptor { get; }
+        IEncryptor Encryptor { get; }
         bool Add(Account _account);
         bool Delete(Account _account);
         bool Delete(int id);

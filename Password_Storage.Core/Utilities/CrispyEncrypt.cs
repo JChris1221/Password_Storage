@@ -4,13 +4,14 @@ using System.Security.Cryptography;
 using System.IO;
 using System.Diagnostics;
 using System.Linq;
+using Password_Storage.Core.Interfaces.Utilities;
 
 
 //this class is used for encryption, decryption and hashing of keys
 
 namespace Password_Storage.Core.Utilities
 {
-    public class CrispyEncrypt
+    public class CrispyEncrypt : IEncryptor
     {
         //takes 128 bit hex string and converts it to byte[16]
         private static byte[] HexStringToByteArray(string hex)
@@ -56,10 +57,11 @@ namespace Password_Storage.Core.Utilities
                         }
                         while (bytes_read > 0);
                         return decrypted_bytes;
-                        
+
                     }
                 }
-            }catch (CryptographicException ce)
+            }
+            catch (CryptographicException ce)
             {
                 Debug.WriteLine(ce.Message);
                 return null;
@@ -69,13 +71,13 @@ namespace Password_Storage.Core.Utilities
 
         public byte[] Encrypt(byte[] message, byte[] key)
         {
-            
+
             SymmetricAlgorithm aes = Aes.Create();
             HashAlgorithm hash = MD5.Create();
             aes.BlockSize = 128;
             aes.Key = key;
             aes.IV = hash.ComputeHash(Encoding.ASCII.GetBytes(DateTime.Now.ToString()));
-            
+
 
             try
             {
@@ -86,7 +88,7 @@ namespace Password_Storage.Core.Utilities
                         cs.Write(message, 0, message.Length);
                     }
 
-                    
+
                     byte[] enc_message = aes.IV.Concat(ms.ToArray()).ToArray();
                     return enc_message;
                 }
@@ -108,7 +110,7 @@ namespace Password_Storage.Core.Utilities
 
         public string CheckKey(byte[] key)
         {
-            if(key.Length != 16)
+            if (key.Length != 16)
                 return "Please enter 128 bit hex for the encryption key";
             return null;
         }
