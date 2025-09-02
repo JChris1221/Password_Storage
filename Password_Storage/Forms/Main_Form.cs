@@ -6,12 +6,15 @@ using System.Diagnostics;
 using System.ComponentModel;
 using System.Text;
 using System.Drawing.Design;
+using Password_Storage.Core.Models;
+using Password_Storage.Core.Utilities;
+using Password_Storage.Core.Interfaces.Utilities;
 
 namespace Password_Storage
 {
     public partial class Main_Form : Form
     {
-        private CRSPManager crsp_manager;
+        private ICRSPManager crsp_manager;
         private BindingList<Account> accounts_bl;
         private byte[] key;
         private string current_file;
@@ -30,7 +33,7 @@ namespace Password_Storage
             {
                 if (enter_password.ShowDialog() == DialogResult.OK)
                 {
-                    this.key = enter_password.key;
+                    this.key = enter_password.key; //May need to be hashed
                     current_file = open_crsp_dialog.FileName;
                     OpenCRSP();
                 }
@@ -39,7 +42,7 @@ namespace Password_Storage
 
         private void save_btn_Click(Object sender, EventArgs e)
         {
-            if(crsp_manager.SaveCRSP(current_file, crsp_manager.Accounts, this.key))
+            if(crsp_manager.Save(current_file, crsp_manager.Accounts, this.key))
                 OpenCRSP();
         }
 
@@ -53,7 +56,7 @@ namespace Password_Storage
                 {
                     this.key = enter_pass.key;
                     this.current_file = save_crsp_dialog.FileName;
-                    crsp_manager.SaveCRSP(current_file, crsp_manager.Accounts, this.key);
+                    crsp_manager.Save(current_file, crsp_manager.Accounts, this.key);
                 }
 
             }
@@ -122,7 +125,7 @@ namespace Password_Storage
 
         private void OpenCRSP()
         {
-            List<Account> loaded_list = crsp_manager.LoadCRSP(current_file, this.key);
+            List<Account> loaded_list = crsp_manager.Load(current_file, this.key);
 
             if (loaded_list == null)
             {

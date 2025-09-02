@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
+using Password_Storage.Core.Interfaces.Utilities;
+using Password_Storage.Core.Utilities;
 
 namespace Password_Storage
 {
     public partial class EnterPasswordForm : Form
     {
         public byte[] key;
-        public CrispyEncrypt crispy_encrypt;
+        public IEncryptor crispy_encrypt;
         public EnterPasswordForm()
         {
             InitializeComponent();
