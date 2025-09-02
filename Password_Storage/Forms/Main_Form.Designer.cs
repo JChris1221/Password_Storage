@@ -31,8 +31,6 @@ namespace Password_Storage
         {
             account_lbl = new System.Windows.Forms.Label();
             filename_lbl = new System.Windows.Forms.Label();
-            username_lbl = new System.Windows.Forms.Label();
-            password_lbl = new System.Windows.Forms.Label();
             accounts_cb = new System.Windows.Forms.ComboBox();
             add_account_btn = new System.Windows.Forms.Button();
             date_saved_tb = new System.Windows.Forms.Label();
@@ -45,10 +43,15 @@ namespace Password_Storage
             save_as_btn = new System.Windows.Forms.ToolStripMenuItem();
             closeFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             edit_btn = new System.Windows.Forms.Button();
-            panel1 = new System.Windows.Forms.Panel();
+            ui_pnl = new System.Windows.Forms.Panel();
+            showpass_chk = new System.Windows.Forms.CheckBox();
+            username_tb = new System.Windows.Forms.TextBox();
+            password_tb = new System.Windows.Forms.TextBox();
             remove_btn = new System.Windows.Forms.Button();
+            filename_pnl = new System.Windows.Forms.Panel();
             menu_strip.SuspendLayout();
-            panel1.SuspendLayout();
+            ui_pnl.SuspendLayout();
+            filename_pnl.SuspendLayout();
             SuspendLayout();
             // 
             // account_lbl
@@ -62,35 +65,14 @@ namespace Password_Storage
             // 
             // filename_lbl
             // 
+            filename_lbl.AutoSize = true;
             filename_lbl.BackColor = System.Drawing.SystemColors.ButtonFace;
-            filename_lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            filename_lbl.Location = new System.Drawing.Point(18, 203);
+            filename_lbl.Location = new System.Drawing.Point(-1, -1);
+            filename_lbl.MaximumSize = new System.Drawing.Size(310, 0);
             filename_lbl.Name = "filename_lbl";
-            filename_lbl.Size = new System.Drawing.Size(328, 34);
+            filename_lbl.Size = new System.Drawing.Size(51, 15);
             filename_lbl.TabIndex = 7;
             filename_lbl.Text = "No file...";
-            // 
-            // username_lbl
-            // 
-            username_lbl.BackColor = System.Drawing.SystemColors.Control;
-            username_lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            username_lbl.Location = new System.Drawing.Point(13, 42);
-            username_lbl.Name = "username_lbl";
-            username_lbl.Padding = new System.Windows.Forms.Padding(1);
-            username_lbl.Size = new System.Drawing.Size(301, 21);
-            username_lbl.TabIndex = 2;
-            username_lbl.Text = "Username";
-            // 
-            // password_lbl
-            // 
-            password_lbl.BackColor = System.Drawing.SystemColors.Control;
-            password_lbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            password_lbl.Location = new System.Drawing.Point(13, 72);
-            password_lbl.Name = "password_lbl";
-            password_lbl.Padding = new System.Windows.Forms.Padding(1);
-            password_lbl.Size = new System.Drawing.Size(301, 21);
-            password_lbl.TabIndex = 3;
-            password_lbl.Text = "Password";
             // 
             // accounts_cb
             // 
@@ -142,7 +124,7 @@ namespace Password_Storage
             menu_strip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { fileToolStripMenuItem });
             menu_strip.Location = new System.Drawing.Point(0, 0);
             menu_strip.Name = "menu_strip";
-            menu_strip.Size = new System.Drawing.Size(358, 24);
+            menu_strip.Size = new System.Drawing.Size(417, 24);
             menu_strip.TabIndex = 9;
             menu_strip.Text = "menuStrip1";
             // 
@@ -194,20 +176,60 @@ namespace Password_Storage
             edit_btn.UseVisualStyleBackColor = true;
             edit_btn.Click += edit_btn_Click;
             // 
-            // panel1
+            // ui_pnl
             // 
-            panel1.Controls.Add(remove_btn);
-            panel1.Controls.Add(accounts_cb);
-            panel1.Controls.Add(edit_btn);
-            panel1.Controls.Add(account_lbl);
-            panel1.Controls.Add(date_saved_tb);
-            panel1.Controls.Add(username_lbl);
-            panel1.Controls.Add(add_account_btn);
-            panel1.Controls.Add(password_lbl);
-            panel1.Location = new System.Drawing.Point(18, 27);
-            panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(328, 169);
-            panel1.TabIndex = 11;
+            ui_pnl.Controls.Add(showpass_chk);
+            ui_pnl.Controls.Add(username_tb);
+            ui_pnl.Controls.Add(password_tb);
+            ui_pnl.Controls.Add(remove_btn);
+            ui_pnl.Controls.Add(accounts_cb);
+            ui_pnl.Controls.Add(edit_btn);
+            ui_pnl.Controls.Add(account_lbl);
+            ui_pnl.Controls.Add(date_saved_tb);
+            ui_pnl.Controls.Add(add_account_btn);
+            ui_pnl.Location = new System.Drawing.Point(18, 27);
+            ui_pnl.Name = "ui_pnl";
+            ui_pnl.Size = new System.Drawing.Size(388, 169);
+            ui_pnl.TabIndex = 11;
+            // 
+            // showpass_chk
+            // 
+            showpass_chk.AutoSize = true;
+            showpass_chk.Enabled = false;
+            showpass_chk.Location = new System.Drawing.Point(320, 74);
+            showpass_chk.Name = "showpass_chk";
+            showpass_chk.Size = new System.Drawing.Size(55, 19);
+            showpass_chk.TabIndex = 14;
+            showpass_chk.Text = "Show";
+            showpass_chk.UseVisualStyleBackColor = true;
+            showpass_chk.CheckedChanged += showpass_chk_CheckedChanged;
+            // 
+            // username_tb
+            // 
+            username_tb.BackColor = System.Drawing.SystemColors.Window;
+            username_tb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            username_tb.Enabled = false;
+            username_tb.ForeColor = System.Drawing.SystemColors.WindowText;
+            username_tb.Location = new System.Drawing.Point(13, 42);
+            username_tb.Name = "username_tb";
+            username_tb.PlaceholderText = "Username";
+            username_tb.ReadOnly = true;
+            username_tb.Size = new System.Drawing.Size(301, 23);
+            username_tb.TabIndex = 13;
+            // 
+            // password_tb
+            // 
+            password_tb.BackColor = System.Drawing.SystemColors.Window;
+            password_tb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            password_tb.Enabled = false;
+            password_tb.ForeColor = System.Drawing.SystemColors.WindowText;
+            password_tb.Location = new System.Drawing.Point(13, 70);
+            password_tb.Name = "password_tb";
+            password_tb.PlaceholderText = "Password";
+            password_tb.ReadOnly = true;
+            password_tb.Size = new System.Drawing.Size(301, 23);
+            password_tb.TabIndex = 12;
+            password_tb.UseSystemPasswordChar = true;
             // 
             // remove_btn
             // 
@@ -221,13 +243,23 @@ namespace Password_Storage
             remove_btn.UseVisualStyleBackColor = false;
             remove_btn.Click += remove_btn_Click;
             // 
+            // filename_pnl
+            // 
+            filename_pnl.AutoScroll = true;
+            filename_pnl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            filename_pnl.Controls.Add(filename_lbl);
+            filename_pnl.Location = new System.Drawing.Point(18, 202);
+            filename_pnl.Name = "filename_pnl";
+            filename_pnl.Size = new System.Drawing.Size(388, 35);
+            filename_pnl.TabIndex = 12;
+            // 
             // Main_Form
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(358, 249);
-            Controls.Add(panel1);
-            Controls.Add(filename_lbl);
+            ClientSize = new System.Drawing.Size(417, 249);
+            Controls.Add(filename_pnl);
+            Controls.Add(ui_pnl);
             Controls.Add(menu_strip);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             MainMenuStrip = menu_strip;
@@ -237,8 +269,10 @@ namespace Password_Storage
             Text = "Password Storage";
             menu_strip.ResumeLayout(false);
             menu_strip.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            ui_pnl.ResumeLayout(false);
+            ui_pnl.PerformLayout();
+            filename_pnl.ResumeLayout(false);
+            filename_pnl.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -246,8 +280,6 @@ namespace Password_Storage
         #endregion
         private System.Windows.Forms.Label account_lbl;
         private System.Windows.Forms.Label filename_lbl;
-        private System.Windows.Forms.Label username_lbl;
-        private System.Windows.Forms.Label password_lbl;
         private System.Windows.Forms.ComboBox accounts_cb;
         private System.Windows.Forms.Button add_account_btn;
         private System.Windows.Forms.Label date_saved_tb;
@@ -260,8 +292,12 @@ namespace Password_Storage
         private System.Windows.Forms.ToolStripMenuItem save_as_btn;
         private System.Windows.Forms.ToolStripMenuItem closeFileToolStripMenuItem;
         private System.Windows.Forms.Button edit_btn;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel ui_pnl;
         private System.Windows.Forms.Button remove_btn;
+        private System.Windows.Forms.TextBox password_tb;
+        private System.Windows.Forms.Panel filename_pnl;
+        private System.Windows.Forms.TextBox username_tb;
+        private System.Windows.Forms.CheckBox showpass_chk;
     }
 }
 

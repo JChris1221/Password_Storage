@@ -38,10 +38,10 @@ namespace Password_Storage
             // 
             password_tb.Location = new System.Drawing.Point(12, 12);
             password_tb.Name = "password_tb";
-            password_tb.PasswordChar = '*';
             password_tb.PlaceholderText = "Enter Key";
             password_tb.Size = new System.Drawing.Size(229, 23);
             password_tb.TabIndex = 0;
+            password_tb.UseSystemPasswordChar = true;
             password_tb.KeyDown += password_tb_KeyDown;
             // 
             // ok_btn
@@ -64,7 +64,7 @@ namespace Password_Storage
             cancel_btn.UseVisualStyleBackColor = true;
             cancel_btn.Click += cancel_btn_Click;
             // 
-            // enter_password_form
+            // EnterPasswordForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -73,7 +73,7 @@ namespace Password_Storage
             Controls.Add(ok_btn);
             Controls.Add(password_tb);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            Name = "enter_password_form";
+            Name = "EnterPasswordForm";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "Enter Password";
             ResumeLayout(false);

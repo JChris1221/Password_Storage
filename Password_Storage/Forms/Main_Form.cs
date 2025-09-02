@@ -18,7 +18,7 @@ namespace Password_Storage
         private BindingList<Account> accounts_bl;
         private byte[] key;
         private string current_file;
-        
+
         public Main_Form()
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace Password_Storage
 
         private void save_btn_Click(Object sender, EventArgs e)
         {
-            if(crsp_manager.Save(current_file, crsp_manager.Accounts, this.key))
+            if (crsp_manager.Save(current_file, crsp_manager.Accounts, this.key))
                 OpenCRSP();
         }
 
@@ -67,9 +67,12 @@ namespace Password_Storage
         private void accounts_cb_SelectedIndexChanged(object sender, EventArgs e)
         {
             Account selected = crsp_manager.Accounts.Single(a => a.id == (int)accounts_cb.SelectedValue);
-            username_lbl.Text = selected.username;
-            password_lbl.Text = selected.password;
+            username_tb.Text = selected.username;
+            username_tb.Enabled = true;
+            password_tb.Text = selected.password;
+            password_tb.Enabled = true;
             date_saved_tb.Text = selected.date_saved.ToString("dddd, dd MMMM yyyy");
+            showpass_chk.Enabled = true;
         }
 
         private void add_account_btn_Click(object sender, EventArgs e)
@@ -102,7 +105,7 @@ namespace Password_Storage
             Account selected = crsp_manager.Accounts.Single(a => a.id == (int)accounts_cb.SelectedValue);
             AccountForm edit_account = new AccountForm(selected);
             edit_account.Text = "Edit Account";
-            
+
             if (edit_account.ShowDialog() == DialogResult.OK)
             {
                 crsp_manager.Update(edit_account.account);
@@ -145,6 +148,11 @@ namespace Password_Storage
                 edit_btn.Enabled = true;
                 remove_btn.Enabled = true;
             }
+        }
+
+        private void showpass_chk_CheckedChanged(object sender, EventArgs e)
+        {
+            password_tb.UseSystemPasswordChar = !showpass_chk.Checked;
         }
     }
 
